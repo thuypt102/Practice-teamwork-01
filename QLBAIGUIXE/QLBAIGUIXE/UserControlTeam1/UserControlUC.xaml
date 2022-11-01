@@ -14,11 +14,25 @@
             <i:InvokeCommandAction Command="{Binding MouseMoveWindowCommand}" CommandParameter="{Binding ElementName=ucControlBar}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Grid>
+    <Grid> 
         <materialDesign:ColorZone
   Mode="PrimaryLight" >
             <DockPanel>
-                <StackPanel DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
+                <StackPanel  DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"> </ColumnDefinition>
+                            
+                            <ColumnDefinition Width="auto" ></ColumnDefinition>
+                            
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <materialDesign:PackIcon Kind="AccountCircle" HorizontalAlignment="Center" VerticalAlignment="Center" Width="30" Height="30" />
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBlock Text="{Binding DisplayName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontWeight="Bold" TextDecorations="Underline" FontSize="14"/>
+                        </Grid>
+                    </Grid>
                     <Button ToolTip="Ẩn" Command="{Binding MinimizeWindowCommand}" 
                             CommandParameter="{Binding ElementName=ucControlBar}" Background="Transparent" BorderThickness="0">
                         <materialDesign:PackIcon Kind="WindowMinimize" />
@@ -33,7 +47,7 @@
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" Checked="ToggleButton_Checked" />
                     <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="{Binding Tag, ElementName=ucControlBar}">
                     </TextBlock>
                     
