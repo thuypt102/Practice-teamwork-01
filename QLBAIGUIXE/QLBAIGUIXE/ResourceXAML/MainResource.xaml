@@ -3,4 +3,5 @@
                     xmlns:viewmodel="clr-namespace:QLBAIGUIXE.ViewModel">
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
     
+    
 </ResourceDictionary>

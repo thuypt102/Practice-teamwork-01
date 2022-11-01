@@ -17,14 +17,15 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="NoResize"
-        Title="LoginWindow" Height="520" Width="380">
+        Name="loginWindow"
+        Title="Đăng Nhập"  Height="520" Width="380">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" >
-            <uc:UserControlUC></uc:UserControlUC>
+            <uc:UserControlUC Tag="{Binding Title, ElementName=loginWindow}"></uc:UserControlUC>
         </Grid>
         
         <materialDesign:Card Grid.Row="1" Height="420" Width="280" HorizontalAlignment="Center" VerticalAlignment="Center">

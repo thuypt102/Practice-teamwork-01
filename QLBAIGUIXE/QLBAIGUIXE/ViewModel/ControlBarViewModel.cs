@@ -20,6 +20,12 @@ namespace QLBAIGUIXE.ViewModel
         public ICommand MouseMoveWindowCommand { get; set; }
         #endregion
 
+        private string _DisplayName;
+        public string DisplayName { get => _DisplayName; set { _DisplayName = value; OnPropertyChanged(); } }
+
+
+
+
         public ControlBarViewModel()
         {
             CloseWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) => {

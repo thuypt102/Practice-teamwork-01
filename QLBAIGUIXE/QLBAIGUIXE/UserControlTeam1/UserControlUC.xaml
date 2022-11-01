@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QLBAIGUIXE.UserControlTeam1"
              mc:Ignorable="d" 
+             Name="ucControlBar"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              >
@@ -14,9 +15,17 @@
             <i:InvokeCommandAction Command="{Binding MouseMoveWindowCommand}" CommandParameter="{Binding ElementName=ucControlBar}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="35"/>
+        </Style>
+    </UserControl.Resources>
     <Grid> 
         <materialDesign:ColorZone
-  Mode="PrimaryLight" >
+  Mode="PrimaryLight"  Background="LightSteelBlue">
             <DockPanel>
                 <StackPanel  DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
                     <Grid>
@@ -33,6 +42,7 @@
                             <TextBlock Text="{Binding DisplayName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontWeight="Bold" TextDecorations="Underline" FontSize="14"/>
                         </Grid>
                     </Grid>
+                    
                     <Button ToolTip="Ẩn" Command="{Binding MinimizeWindowCommand}" 
                             CommandParameter="{Binding ElementName=ucControlBar}" Background="Transparent" BorderThickness="0">
                         <materialDesign:PackIcon Kind="WindowMinimize" />
@@ -47,10 +57,8 @@
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" Checked="ToggleButton_Checked" />
-                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="{Binding Tag, ElementName=ucControlBar}">
-                    </TextBlock>
-                    
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Tag, ElementName=ucControlBar}" FontWeight="Bold" FontSize="16" FontFamily="Bahnschrift SemiBold" Margin="30,0,0,0"/>
+
                 </StackPanel>
             </DockPanel>
         </materialDesign:ColorZone>
