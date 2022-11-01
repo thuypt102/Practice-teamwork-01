@@ -8,13 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/materialdesigncolors.dll")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/materialdesigncolors.pdb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/materialdesignthemes.wpf.dll")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/materialdesignthemes.wpf.pdb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/qlbaiguixe.exe")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/qlbaiguixe.pdb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/model1.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/model1.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("asset/logo.png")]
 
 

@@ -5,8 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QLBAIGUIXE.UserControlTeam1"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             >
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{Binding MouseMoveWindowCommand}" CommandParameter="{Binding ElementName=ucControlBar}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
-            
+        <materialDesign:ColorZone
+  Mode="PrimaryLight" >
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
+                    <Button ToolTip="Ẩn" Command="{Binding MinimizeWindowCommand}" 
+                            CommandParameter="{Binding ElementName=ucControlBar}" Background="Transparent" BorderThickness="0">
+                        <materialDesign:PackIcon Kind="WindowMinimize" />
+                    </Button>
+                    <Button ToolTip="Phóng To" Command="{Binding MaximizeWindowCommand}" 
+                            CommandParameter="{Binding ElementName=ucControlBar}" Background="Transparent" BorderThickness="0">
+                        <materialDesign:PackIcon Kind="WindowMaximize" />
+                    </Button>
+                    <Button ToolTip="Đóng" Command="{Binding CloseWindowCommand}" CommandParameter="{Binding ElementName=ucControlBar}" Background="Red" BorderThickness="0" ToolBar.OverflowMode="AsNeeded">
+                        <materialDesign:PackIcon Kind="WindowClose"  />
+                    </Button>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="{Binding Tag, ElementName=ucControlBar}">
+                    </TextBlock>
+                    
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
     </Grid>
 </UserControl>

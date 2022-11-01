@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace QLBAIGUIXE.ViewModel
 {
-    class LoginViewModel : BaseViewModel
+    /*class LoginViewModel : BaseViewModel
     {
         public bool IsLogin { get; set; }
         private string _username;
@@ -34,5 +34,5 @@ namespace QLBAIGUIXE.ViewModel
             IsLogin = true;
             p.Close();
         }
-    }
+    }*/
 }

@@ -16,20 +16,9 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="None"
-        Title="" Height="600" Width="620">
+        DataContext="{StaticResource MainVM}"
+        Title="MainWindow" Height="600" Width="620">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="1">
-            <StackPanel Height="200" Width="150">
-                <PasswordBox
-      x:Name="PasswordBox"
-      materialDesign:HintAssist.Hint="Password" />
-
-
-            </StackPanel>
-        </Grid>
+        
     </Grid>
 </Window>

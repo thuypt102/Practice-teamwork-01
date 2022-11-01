@@ -24,4 +24,17 @@ D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\QLBAIGUIXE.csproj
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\QLBAIGUIXE.csproj.CopyComplete
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\QLBAIGUIXE.exe
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\QLBAIGUIXE.pdb
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\LoginWindow.g.cs
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\EntityFramework.dll
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\EntityFramework.SqlServer.dll
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\EntityFramework.xml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\EntityFramework.SqlServer.xml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\LoginWindow.baml
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\Microsoft.Expression.Interactions.dll
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\Microsoft.Xaml.Behaviors.dll
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\System.Windows.Interactivity.dll
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\Microsoft.Expression.Interactions.xml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\Microsoft.Xaml.Behaviors.xml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\System.Windows.Interactivity.xml

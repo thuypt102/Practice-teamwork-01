@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QLBAIGUIXE.Model
 {
-    public class DataProvider
+    /*public class DataProvider
     {
         private static DataProvider _ins;
         public static DataProvider Ins
@@ -28,5 +28,5 @@ namespace QLBAIGUIXE.Model
         {
             DB = new QLBAIXEEntities();
         }
-    }
+    }*/
 }
