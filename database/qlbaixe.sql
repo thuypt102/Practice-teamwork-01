@@ -1,9 +1,10 @@
-CREATE DATABASE QLBAIXE
+﻿CREATE DATABASE QLBAIXE
 go
 USE QLBAIXE
 
-CREATE TABLE EMPLOYEE( Id CHAR(3)not null  primary key,
-					   Password VARCHAR(20),
+CREATE TABLE EMPLOYEE( Id int not null IDENTITY(1,1) primary key,
+					   UserName VARCHAR(50),
+					   Password VARCHAR(50),
 					   DisplayName nvarchar(50),
 					   IdRole char(1) )
 
@@ -19,7 +20,7 @@ CREATE TABLE INFOPARKING(Type int primary key,
 CREATE TABLE INFOCAR(Id int not null IDENTITY(1,1) primary key,
 					 LicensePlate char(9)not null,
 					 Type int not null,
-					 IdEMPLOYEE Char(3)not null CONSTRAINT fk_ifcar_employee FOREIGN KEY (IdEMPLOYEE) REFERENCES EMPLOYEE(Id) ,
+					 IdEMPLOYEE int not null CONSTRAINT fk_ifcar_employee FOREIGN KEY (IdEMPLOYEE) REFERENCES EMPLOYEE(Id) ,
 					 IdCUSTOMER int not null CONSTRAINT fk_ifcar_customer FOREIGN KEY (IdCUSTOMER)REFERENCES CUSTOMER(Id),
 					 CheckInTime Datetime,
 					 CheckOutTime Datetime)
@@ -29,6 +30,15 @@ CREATE TABLE PARKING(id int IDENTITY primary key,
 					IdINFOCAR int not null CONSTRAINT fk_PARKING_infocar FOREIGN KEY (IdINFOCAR) REFERENCES INFOCAR(Id))
 
 CREATE TABLE Bill(Id int not null IDENTITY(1,1) primary key,
-				  IdEMPLOYEE Char(3)not null CONSTRAINT fk_bill_employee FOREIGN KEY (IdEMPLOYEE) REFERENCES EMPLOYEE(Id) ,
+				  IdEMPLOYEE int not null CONSTRAINT fk_bill_employee FOREIGN KEY (IdEMPLOYEE) REFERENCES EMPLOYEE(Id) ,
 				  IdINFOCAR int not null CONSTRAINT fk_bill_infocar FOREIGN KEY (IdINFOCAR) REFERENCES INFOCAR(Id),
 				  Price Money)
+
+
+
+go
+INSERT INTO EMPLOYEE (UserName,Password,DisplayName,IdRole) VALUES
+							('admin1','db69fc039dcbd2962cb4d28f5891aae1',N'Tạ Xuân Kiên',0),
+							('staff1','978aae9bb6bee8fb75de3e4830a1be46',N'Hồ Thị Cảm Ly',1),
+							('admin2','db69fc039dcbd2962cb4d28f5891aae1',N'Phùng Thị Thùy',0),
+							('staff2','978aae9bb6bee8fb75de3e4830a1be46',N'Ngô Hồng Huy',1)
