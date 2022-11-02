@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLBAIXEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEMPLOYEE" Type="int" Nullable="false" />
+          <Property Name="IdINFOCAR" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdRole" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="INFOCAR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LicensePlate" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="IdEMPLOYEE" Type="int" Nullable="false" />
+          <Property Name="IdCUSTOMER" Type="int" Nullable="false" />
+          <Property Name="CheckInTime" Type="datetime" />
+          <Property Name="CheckOutTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="INFOPARKING">
+          <Key>
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PARKING">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="IdINFOCAR" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_bill_employee">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IdEMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bill_infocar">
+          <End Role="INFOCAR" Type="Self.INFOCAR" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INFOCAR">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IdINFOCAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ifcar_customer">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="INFOCAR" Type="Self.INFOCAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="INFOCAR">
+              <PropertyRef Name="IdCUSTOMER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ifcar_employee">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="INFOCAR" Type="Self.INFOCAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="INFOCAR">
+              <PropertyRef Name="IdEMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PARKING_infocar">
+          <End Role="INFOCAR" Type="Self.INFOCAR" Multiplicity="1" />
+          <End Role="PARKING" Type="Self.PARKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INFOCAR">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PARKING">
+              <PropertyRef Name="IdINFOCAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PARKING_infoPARKING">
+          <End Role="INFOPARKING" Type="Self.INFOPARKING" Multiplicity="1" />
+          <End Role="PARKING" Type="Self.PARKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INFOPARKING">
+              <PropertyRef Name="Type" />
+            </Principal>
+            <Dependent Role="PARKING">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLBAIXEModelStoreContainer">
+          <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INFOCAR" EntityType="Self.INFOCAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INFOPARKING" EntityType="Self.INFOPARKING" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PARKING" EntityType="Self.PARKING" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_bill_employee" Association="Self.fk_bill_employee">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bill_infocar" Association="Self.fk_bill_infocar">
+            <End Role="INFOCAR" EntitySet="INFOCAR" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ifcar_customer" Association="Self.fk_ifcar_customer">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="INFOCAR" EntitySet="INFOCAR" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ifcar_employee" Association="Self.fk_ifcar_employee">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="INFOCAR" EntitySet="INFOCAR" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PARKING_infocar" Association="Self.fk_PARKING_infocar">
+            <End Role="INFOCAR" EntitySet="INFOCAR" />
+            <End Role="PARKING" EntitySet="PARKING" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PARKING_infoPARKING" Association="Self.fk_PARKING_infoPARKING">
+            <End Role="INFOPARKING" EntitySet="INFOPARKING" />
+            <End Role="PARKING" EntitySet="PARKING" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLBAIXEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEMPLOYEE" Type="Int32" Nullable="false" />
+          <Property Name="IdINFOCAR" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.fk_bill_employee" FromRole="Bill" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="INFOCAR" Relationship="Self.fk_bill_infocar" FromRole="Bill" ToRole="INFOCAR" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="INFOCARs" Relationship="Self.fk_ifcar_customer" FromRole="CUSTOMER" ToRole="INFOCAR" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdRole" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Bills" Relationship="Self.fk_bill_employee" FromRole="EMPLOYEE" ToRole="Bill" />
+          <NavigationProperty Name="INFOCARs" Relationship="Self.fk_ifcar_employee" FromRole="EMPLOYEE" ToRole="INFOCAR" />
+        </EntityType>
+        <EntityType Name="INFOCAR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LicensePlate" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="IdEMPLOYEE" Type="Int32" Nullable="false" />
+          <Property Name="IdCUSTOMER" Type="Int32" Nullable="false" />
+          <Property Name="CheckInTime" Type="DateTime" Precision="3" />
+          <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Bills" Relationship="Self.fk_bill_infocar" FromRole="INFOCAR" ToRole="Bill" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.fk_ifcar_customer" FromRole="INFOCAR" ToRole="CUSTOMER" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.fk_ifcar_employee" FromRole="INFOCAR" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="PARKINGs" Relationship="Self.fk_PARKING_infocar" FromRole="INFOCAR" ToRole="PARKING" />
+        </EntityType>
+        <EntityType Name="INFOPARKING">
+          <Key>
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PARKINGs" Relationship="Self.fk_PARKING_infoPARKING" FromRole="INFOPARKING" ToRole="PARKING" />
+        </EntityType>
+        <EntityType Name="PARKING">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="IdINFOCAR" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="INFOCAR" Relationship="Self.fk_PARKING_infocar" FromRole="PARKING" ToRole="INFOCAR" />
+          <NavigationProperty Name="INFOPARKING" Relationship="Self.fk_PARKING_infoPARKING" FromRole="PARKING" ToRole="INFOPARKING" />
+        </EntityType>
+        <Association Name="fk_bill_employee">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IdEMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bill_infocar">
+          <End Role="INFOCAR" Type="Self.INFOCAR" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INFOCAR">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IdINFOCAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ifcar_customer">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="INFOCAR" Type="Self.INFOCAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="INFOCAR">
+              <PropertyRef Name="IdCUSTOMER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ifcar_employee">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="INFOCAR" Type="Self.INFOCAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="INFOCAR">
+              <PropertyRef Name="IdEMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PARKING_infocar">
+          <End Role="INFOCAR" Type="Self.INFOCAR" Multiplicity="1" />
+          <End Role="PARKING" Type="Self.PARKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INFOCAR">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PARKING">
+              <PropertyRef Name="IdINFOCAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PARKING_infoPARKING">
+          <End Role="INFOPARKING" Type="Self.INFOPARKING" Multiplicity="1" />
+          <End Role="PARKING" Type="Self.PARKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INFOPARKING">
+              <PropertyRef Name="Type" />
+            </Principal>
+            <Dependent Role="PARKING">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLBAIXEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bills" EntityType="Self.Bill" />
+          <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
+          <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="INFOCARs" EntityType="Self.INFOCAR" />
+          <EntitySet Name="INFOPARKINGs" EntityType="Self.INFOPARKING" />
+          <EntitySet Name="PARKINGs" EntityType="Self.PARKING" />
+          <AssociationSet Name="fk_bill_employee" Association="Self.fk_bill_employee">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bill_infocar" Association="Self.fk_bill_infocar">
+            <End Role="INFOCAR" EntitySet="INFOCARs" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ifcar_customer" Association="Self.fk_ifcar_customer">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="INFOCAR" EntitySet="INFOCARs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ifcar_employee" Association="Self.fk_ifcar_employee">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+            <End Role="INFOCAR" EntitySet="INFOCARs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PARKING_infocar" Association="Self.fk_PARKING_infocar">
+            <End Role="INFOCAR" EntitySet="INFOCARs" />
+            <End Role="PARKING" EntitySet="PARKINGs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PARKING_infoPARKING" Association="Self.fk_PARKING_infoPARKING">
+            <End Role="INFOPARKING" EntitySet="INFOPARKINGs" />
+            <End Role="PARKING" EntitySet="PARKINGs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLBAIXEModelStoreContainer" CdmEntityContainer="QLBAIXEEntities">
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="QLBAIXEModel.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdEMPLOYEE" ColumnName="IdEMPLOYEE" />
+                <ScalarProperty Name="IdINFOCAR" ColumnName="IdINFOCAR" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMERs">
+            <EntityTypeMapping TypeName="QLBAIXEModel.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEEs">
+            <EntityTypeMapping TypeName="QLBAIXEModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INFOCARs">
+            <EntityTypeMapping TypeName="QLBAIXEModel.INFOCAR">
+              <MappingFragment StoreEntitySet="INFOCAR">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IdEMPLOYEE" ColumnName="IdEMPLOYEE" />
+                <ScalarProperty Name="IdCUSTOMER" ColumnName="IdCUSTOMER" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INFOPARKINGs">
+            <EntityTypeMapping TypeName="QLBAIXEModel.INFOPARKING">
+              <MappingFragment StoreEntitySet="INFOPARKING">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PARKINGs">
+            <EntityTypeMapping TypeName="QLBAIXEModel.PARKING">
+              <MappingFragment StoreEntitySet="PARKING">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IdINFOCAR" ColumnName="IdINFOCAR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

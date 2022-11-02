@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace QLBAIGUIXE.Model
 {
-    /*public class DataProvider
+    
+    public class DataProvider
     {
+        public string Acc { get; set; }
+
         private static DataProvider _ins;
         public static DataProvider Ins
         {
@@ -28,5 +31,11 @@ namespace QLBAIGUIXE.Model
         {
             DB = new QLBAIXEEntities();
         }
-    }*/
+
+        public void setAcc(string acc)
+        {
+            Acc = acc;
+        }
+
+    }
 }

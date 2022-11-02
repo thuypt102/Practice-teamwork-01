@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLBAIGUIXE" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        xmlns:uc="clr-namespace:QLBAIGUIXE.UserControlTeam1"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -17,8 +18,14 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         DataContext="{StaticResource MainVM}"
-        Title="MainWindow" Height="600" Width="620">
+        Title="Trang chủ" Height="600" Width="620">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" >
+            <uc:UserControlUC Tag="{Binding Title, ElementName=mainWinDow}"></uc:UserControlUC>
+        </Grid>
     </Grid>
 </Window>

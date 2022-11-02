@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLBAIXEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdEMPLOYEE" Type="int" Nullable="false" />
+    <Property Name="IdINFOCAR" Type="int" Nullable="false" />
+    <Property Name="Price" Type="money" />
+  </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="char" MaxLength="12" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdRole" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="INFOCAR">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LicensePlate" Type="char" MaxLength="9" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="IdEMPLOYEE" Type="int" Nullable="false" />
+    <Property Name="IdCUSTOMER" Type="int" Nullable="false" />
+    <Property Name="CheckInTime" Type="datetime" />
+    <Property Name="CheckOutTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="INFOPARKING">
+    <Key>
+      <PropertyRef Name="Type" />
+    </Key>
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PARKING">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="IdINFOCAR" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_bill_employee">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="IdEMPLOYEE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_bill_infocar">
+    <End Role="INFOCAR" Type="Self.INFOCAR" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INFOCAR">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="IdINFOCAR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ifcar_customer">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+    <End Role="INFOCAR" Type="Self.INFOCAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="INFOCAR">
+        <PropertyRef Name="IdCUSTOMER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ifcar_employee">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="INFOCAR" Type="Self.INFOCAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="INFOCAR">
+        <PropertyRef Name="IdEMPLOYEE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_PARKING_infocar">
+    <End Role="INFOCAR" Type="Self.INFOCAR" Multiplicity="1" />
+    <End Role="PARKING" Type="Self.PARKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INFOCAR">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PARKING">
+        <PropertyRef Name="IdINFOCAR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_PARKING_infoPARKING">
+    <End Role="INFOPARKING" Type="Self.INFOPARKING" Multiplicity="1" />
+    <End Role="PARKING" Type="Self.PARKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INFOPARKING">
+        <PropertyRef Name="Type" />
+      </Principal>
+      <Dependent Role="PARKING">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLBAIXEModelStoreContainer">
+    <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INFOCAR" EntityType="Self.INFOCAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INFOPARKING" EntityType="Self.INFOPARKING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PARKING" EntityType="Self.PARKING" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_bill_employee" Association="Self.fk_bill_employee">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="fk_bill_infocar" Association="Self.fk_bill_infocar">
+      <End Role="INFOCAR" EntitySet="INFOCAR" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ifcar_customer" Association="Self.fk_ifcar_customer">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="INFOCAR" EntitySet="INFOCAR" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ifcar_employee" Association="Self.fk_ifcar_employee">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="INFOCAR" EntitySet="INFOCAR" />
+    </AssociationSet>
+    <AssociationSet Name="fk_PARKING_infocar" Association="Self.fk_PARKING_infocar">
+      <End Role="INFOCAR" EntitySet="INFOCAR" />
+      <End Role="PARKING" EntitySet="PARKING" />
+    </AssociationSet>
+    <AssociationSet Name="fk_PARKING_infoPARKING" Association="Self.fk_PARKING_infoPARKING">
+      <End Role="INFOPARKING" EntitySet="INFOPARKING" />
+      <End Role="PARKING" EntitySet="PARKING" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -38,3 +38,4 @@ D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\Microsoft.Express
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\Microsoft.Xaml.Behaviors.pdb
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\Microsoft.Xaml.Behaviors.xml
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\System.Windows.Interactivity.xml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\QLBAIGUIXE_Content.g.cs

@@ -5,13 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
+using QLBAIGUIXE.Model;
 using QLBAIGUIXE.ViewModel;
 
 
 namespace QLBAIGUIXE.ViewModel
 {
-    public class ControlBarViewModel : BaseViewModel
+    public class ControlBarViewModel : BaseViewModel 
     {
         #region commands
         public ICommand CloseWindowCommand { get; set; }
@@ -20,14 +22,22 @@ namespace QLBAIGUIXE.ViewModel
         public ICommand MouseMoveWindowCommand { get; set; }
         #endregion
 
-        private string _DisplayName;
-        public string DisplayName { get => _DisplayName; set { _DisplayName = value; OnPropertyChanged(); } }
+        
+        private string _DisplayName { get; set; }
+        public string DisplayName { get=> _DisplayName; set => _DisplayName = value; }
+
+        private Visibility _IsAccount { get; set; }
+        public Visibility IsAccount { get => _IsAccount; set => _IsAccount = value; } 
 
 
 
 
         public ControlBarViewModel()
         {
+            IsAccount = Visibility.Hidden;
+            
+            LoadDisplayName();
+            
             CloseWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) => {
                 FrameworkElement window = GetWindowParent(p);
                 var w = window as Window;
@@ -85,6 +95,27 @@ namespace QLBAIGUIXE.ViewModel
             }
 
             return parent;
+        }
+
+        void LoadDisplayName()
+        {
+            string UserName = DataProvider.Ins.Acc;
+            if (UserName != null)
+            {
+                var employeeList = DataProvider.Ins.DB.EMPLOYEEs;   
+                IsAccount = Visibility.Visible;
+                foreach (var employee in employeeList)
+                {
+                    if (employee.UserName == UserName)
+                    {
+                        DisplayName = employee.DisplayName;
+                        break;
+                    }
+
+                }
+
+            }
+            else return;
         }
     }
 }
