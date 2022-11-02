@@ -1,5 +1,5 @@
 CREATE DATABASE QLBAIXE
-
+go
 USE QLBAIXE
 
 CREATE TABLE EMPLOYEE( Id CHAR(3)not null  primary key,
@@ -12,7 +12,8 @@ CREATE TABLE CUSTOMER( Id int not null IDENTITY(1,1)primary key,
 					   DisplayName nvarchar(50),
 					   Phone char(10))
 
-CREATE TABLE INFOPAKING(Type int primary key,
+CREATE TABLE INFOPARKING(Type int primary key,
+						Name nvarchar(50)not null,
 						Count int not null)
 
 CREATE TABLE INFOCAR(Id int not null IDENTITY(1,1) primary key,
@@ -23,9 +24,9 @@ CREATE TABLE INFOCAR(Id int not null IDENTITY(1,1) primary key,
 					 CheckInTime Datetime,
 					 CheckOutTime Datetime)
 
-CREATE TABLE PAKING(id int IDENTITY primary key,
-					Type int not null CONSTRAINT fk_paking_infopaking FOREIGN KEY (Type) REFERENCES INFOPAKING(Type),
-					IdINFOCAR int not null CONSTRAINT fk_paking_infocar FOREIGN KEY (IdINFOCAR) REFERENCES INFOCAR(Id))
+CREATE TABLE PARKING(id int IDENTITY primary key,
+					Type int not null CONSTRAINT fk_PARKING_infoPARKING FOREIGN KEY (Type) REFERENCES INFOPARKING(Type),
+					IdINFOCAR int not null CONSTRAINT fk_PARKING_infocar FOREIGN KEY (IdINFOCAR) REFERENCES INFOCAR(Id))
 
 CREATE TABLE Bill(Id int not null IDENTITY(1,1) primary key,
 				  IdEMPLOYEE Char(3)not null CONSTRAINT fk_bill_employee FOREIGN KEY (IdEMPLOYEE) REFERENCES EMPLOYEE(Id) ,

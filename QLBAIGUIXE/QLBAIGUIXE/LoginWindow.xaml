@@ -53,6 +53,7 @@
 
                     <Grid Grid.Row="0">
                         <TextBox materialDesign:HintAssist.Hint="Username"
+                                 Text="{Binding Username}"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     </Grid>
                     <Grid Grid.Row="1">
