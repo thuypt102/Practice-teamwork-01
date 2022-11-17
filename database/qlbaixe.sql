@@ -42,3 +42,9 @@ INSERT INTO EMPLOYEE (UserName,Password,DisplayName,IdRole) VALUES
 							('staff1','978aae9bb6bee8fb75de3e4830a1be46',N'Hồ Thị Cảm Ly',1),
 							('admin2','db69fc039dcbd2962cb4d28f5891aae1',N'Phùng Thị Thùy',0),
 							('staff2','978aae9bb6bee8fb75de3e4830a1be46',N'Ngô Hồng Huy',1)
+
+
+Create View VIEWPARKING as
+Select  CT.Code, IC.LicensePlate
+from PARKING as PK, INFOCAR as IC, CUSTOMER as CT
+Where PK.IdINFOCAR = IC.Id and IC.IdCUSTOMER = CT.Id
