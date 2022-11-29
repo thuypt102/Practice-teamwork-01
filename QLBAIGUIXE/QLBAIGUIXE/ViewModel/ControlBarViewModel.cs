@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Threading;
 using QLBAIGUIXE.Model;
 using QLBAIGUIXE.ViewModel;
 
@@ -20,14 +21,15 @@ namespace QLBAIGUIXE.ViewModel
         public ICommand MaximizeWindowCommand { get; set; }
         public ICommand MinimizeWindowCommand { get; set; }
         public ICommand MouseMoveWindowCommand { get; set; }
+        public ICommand LoadedCommand { get; set; }
         #endregion
 
-        
+
         private string _DisplayName { get; set; }
-        public string DisplayName { get=> _DisplayName; set => _DisplayName = value; }
+        public string DisplayName { get=> _DisplayName; set { _DisplayName = value; OnPropertyChanged(); } }
 
         private Visibility _IsAccount { get; set; }
-        public Visibility IsAccount { get => _IsAccount; set => _IsAccount = value; } 
+        public Visibility IsAccount { get => _IsAccount; set { _IsAccount = value; OnPropertyChanged(); } } 
 
 
 
@@ -35,9 +37,30 @@ namespace QLBAIGUIXE.ViewModel
         public ControlBarViewModel()
         {
             IsAccount = Visibility.Hidden;
-            
-            LoadDisplayName();
-            
+
+            LoadedCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+                
+                if (p == null)
+                    return;
+                if (DataProvider.Ins.Acc != 0)
+                {
+                    IsAccount = Visibility.Visible;
+                    var acc = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.Id == DataProvider.Ins.Acc);
+                    foreach (var item in acc)
+                    {
+                        DisplayName = item.DisplayName;
+                    }
+                }
+                else
+                {
+                    IsAccount = Visibility.Hidden;
+                }
+                
+
+
+            });
+
             CloseWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) => {
                 FrameworkElement window = GetWindowParent(p);
                 var w = window as Window;
@@ -96,26 +119,7 @@ namespace QLBAIGUIXE.ViewModel
 
             return parent;
         }
-
-        void LoadDisplayName()
-        {
-            string UserName = DataProvider.Ins.Acc;
-            if (UserName != null)
-            {
-                var employeeList = DataProvider.Ins.DB.EMPLOYEEs;   
-                IsAccount = Visibility.Visible;
-                foreach (var employee in employeeList)
-                {
-                    if (employee.UserName == UserName)
-                    {
-                        DisplayName = employee.DisplayName;
-                        break;
-                    }
-
-                }
-
-            }
-            else return;
-        }
+        
+        
     }
 }

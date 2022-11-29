@@ -14,7 +14,11 @@
         <i:EventTrigger EventName="MouseLeftButtonDown">
             <i:InvokeCommandAction Command="{Binding MouseMoveWindowCommand}" CommandParameter="{Binding ElementName=ucControlBar}"/>
         </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="{Binding ElementName=mainWinDow}"/>
+        </i:EventTrigger>
     </i:Interaction.Triggers>
+    
 
     <UserControl.Resources>
         <Style TargetType="Button">
@@ -35,11 +39,11 @@
                             <ColumnDefinition Width="auto" ></ColumnDefinition>
                             
                         </Grid.ColumnDefinitions>
-                        <Grid Visibility="{Binding IsAccount}" Grid.Column="0">
+                        <Grid Visibility="{Binding IsAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0">
                             <materialDesign:PackIcon Kind="AccountCircle" HorizontalAlignment="Center" VerticalAlignment="Center" Width="30" Height="30" />
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBlock Text="{Binding DisplayName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontWeight="Bold" TextDecorations="Underline" FontSize="14"/>
+                            <TextBlock Text="{Binding DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontWeight="Bold" TextDecorations="Underline" FontSize="14"/>
                         </Grid>
                     </Grid>
                     

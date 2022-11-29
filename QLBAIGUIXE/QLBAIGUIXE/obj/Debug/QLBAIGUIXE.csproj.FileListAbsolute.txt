@@ -39,3 +39,9 @@ D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\Microsoft.Xaml.Be
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\Microsoft.Xaml.Behaviors.xml
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\System.Windows.Interactivity.xml
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\QLBAIGUIXE_Content.g.cs
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\StaffHomeWindow.g.cs
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\StaffHomeWindow.baml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\BillWindow.g.cs
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\BillWindow.baml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\UserControlStaff.g.cs
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\UserControlStaff.baml

@@ -14,18 +14,32 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Name="mainWinDow"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="None"
         DataContext="{StaticResource MainVM}"
-        Title="Trang chủ" Height="600" Width="620">
+        Title="Trang chủ" >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mainWinDow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" >
-            <uc:UserControlUC Tag="{Binding Title, ElementName=mainWinDow}"></uc:UserControlUC>
+            <uc:UserControlUC Tag="{Binding Title, ElementName=mainWinDow}" />
         </Grid>
+        <Grid Grid.Row="1" Name="GridMain" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <i:InvokeCommandAction Command="{Binding LoadedGridMainCommand}" CommandParameter="{Binding ElementName=GridMain}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Grid>
+        
     </Grid>
 </Window>

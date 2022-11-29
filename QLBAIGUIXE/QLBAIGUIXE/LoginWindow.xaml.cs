@@ -24,9 +24,6 @@ namespace QLBAIGUIXE
             InitializeComponent();
         }
 
-        private void UserControlUC_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

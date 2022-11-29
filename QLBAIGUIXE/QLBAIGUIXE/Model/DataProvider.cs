@@ -9,7 +9,7 @@ namespace QLBAIGUIXE.Model
     
     public class DataProvider
     {
-        public string Acc { get; set; }
+        public int Acc { get; set; }
 
         private static DataProvider _ins;
         public static DataProvider Ins
@@ -32,10 +32,20 @@ namespace QLBAIGUIXE.Model
             DB = new QLBAIXEEntities();
         }
 
-        public void setAcc(string acc)
+        public void setAcc(int acc)
         {
             Acc = acc;
         }
 
+        
+        public string getLicensePlate { get; set; }
+        
+        public string getCode { get; set; }
+
+        public void setdata(string PL, string code)
+        {
+            this.getLicensePlate = PL;
+            this.getCode = code;
+        }
     }
 }

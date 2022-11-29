@@ -17,6 +17,8 @@ namespace QLBAIGUIXE.Model
         public int id { get; set; }
         public int Type { get; set; }
         public int IdINFOCAR { get; set; }
+
+        
     
         public virtual INFOCAR INFOCAR { get; set; }
         public virtual INFOPARKING INFOPARKING { get; set; }

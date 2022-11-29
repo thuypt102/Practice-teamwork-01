@@ -68,6 +68,24 @@
     <NavigationProperty Name="INFOCAR" Relationship="Self.fk_PARKING_infocar" FromRole="PARKING" ToRole="INFOCAR" />
     <NavigationProperty Name="INFOPARKING" Relationship="Self.fk_PARKING_infoPARKING" FromRole="PARKING" ToRole="INFOPARKING" />
   </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="VIEWPARKING">
+    <Key>
+      <PropertyRef Name="Code" />
+      <PropertyRef Name="LicensePlate" />
+    </Key>
+    <Property Name="Code" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="LicensePlate" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+  </EntityType>
   <Association Name="fk_bill_employee">
     <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
     <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
@@ -147,6 +165,8 @@
     <EntitySet Name="INFOCARs" EntityType="Self.INFOCAR" />
     <EntitySet Name="INFOPARKINGs" EntityType="Self.INFOPARKING" />
     <EntitySet Name="PARKINGs" EntityType="Self.PARKING" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="VIEWPARKINGs" EntityType="Self.VIEWPARKING" />
     <AssociationSet Name="fk_bill_employee" Association="Self.fk_bill_employee">
       <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
       <End Role="Bill" EntitySet="Bills" />
@@ -171,5 +191,46 @@
       <End Role="INFOPARKING" EntitySet="INFOPARKINGs" />
       <End Role="PARKING" EntitySet="PARKINGs" />
     </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QLBAIXEModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QLBAIXEModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
 </Schema>

@@ -20,6 +20,8 @@ namespace QLBAIGUIXE.ViewModel
         private string _Password;
         public string Password { get => _Password; set { _Password = value; OnPropertyChanged(); } }
 
+        public string IdRole { get; set; }
+
         public ICommand CloseCommand { get; set; }
         public ICommand LoginCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
@@ -52,7 +54,14 @@ namespace QLBAIGUIXE.ViewModel
             if (accCount > 0)
             {
                 IsLogin = true;
-                DataProvider.Ins.Acc = UserName;
+                var acc = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.UserName == UserName);
+                int ID = 0;
+                foreach (var item in acc)
+                {
+                    ID = item.Id;
+                    IdRole = item.IdRole;
+                }
+                DataProvider.Ins.Acc = ID;
                 p.Close();
             }
             else
