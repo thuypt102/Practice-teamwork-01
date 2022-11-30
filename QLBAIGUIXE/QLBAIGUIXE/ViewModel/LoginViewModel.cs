@@ -49,7 +49,7 @@ namespace QLBAIGUIXE.ViewModel
              */
 
             string passEncode = MD5Hash(Base64Encode(Password));
-            var accCount = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.UserName == UserName && x.Password == passEncode).Count();
+            var accCount = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.UserName == UserName && x.Password == passEncode && x.Status==true).Count();
 
             if (accCount > 0)
             {
@@ -67,7 +67,7 @@ namespace QLBAIGUIXE.ViewModel
             else
             {
                 IsLogin = false;
-                MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
+                MessageBox.Show("Sai tài khoản hoặc mật khẩu!", "Thông báo");
             }
         }
 

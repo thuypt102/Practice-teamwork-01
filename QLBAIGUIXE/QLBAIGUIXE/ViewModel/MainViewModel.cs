@@ -29,6 +29,19 @@ namespace QLBAIGUIXE.ViewModel
             }
         }
 
+        private UserControlAdmin _userControlAdmin { get; set; }
+        public UserControlAdmin userControlAdmin
+        {
+            get { return _userControlAdmin; }
+            set
+            {
+                if (value == _userControlAdmin)
+                    return;
+                _userControlAdmin = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public bool Isloaded = false;
         public ICommand LoadedWindowCommand { get; set; }
@@ -53,9 +66,9 @@ namespace QLBAIGUIXE.ViewModel
                     if (loginVM.IsLogin)
                     {
                         p.Show();
-                    if (loginVM.IdRole.Equals("1"))
-                        userControl = new UserControlStaff();
-
+                        if (loginVM.IdRole.Equals("1"))
+                            userControl = new UserControlStaff();
+                        else userControl = new UserControlAdmin();
                     }
                     else
                     {
@@ -63,9 +76,10 @@ namespace QLBAIGUIXE.ViewModel
                     }
             });
             LoadedGridMainCommand = new RelayCommand<Grid>((p) => { return true; }, (p) => {
-                
+
+                if (userControl == null)
+                    return;
                 p.Children.Add(userControl);
-                
 
             });
 

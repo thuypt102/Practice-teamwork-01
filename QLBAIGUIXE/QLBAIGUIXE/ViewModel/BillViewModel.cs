@@ -73,7 +73,7 @@ namespace QLBAIGUIXE.ViewModel
 
             DataProvider.Ins.DB.PARKINGs.Remove(c);
             DataProvider.Ins.DB.SaveChanges();
-            MessageBox.Show("Thanh toán thành công");
+            MessageBox.Show("Thanh toán thành công", "Thông báo");
             Ispayment = true;   
             p.Close();
             

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLBAIXEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLBAIXEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bill">
           <Key>
             <PropertyRef Name="Id" />
@@ -32,6 +32,7 @@
           <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
           <Property Name="IdRole" Type="char" MaxLength="1" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="INFOCAR">
           <Key>
@@ -52,6 +53,7 @@
           <Property Name="Type" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="PARKING">
           <Key>
@@ -70,6 +72,34 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QLBAIXE.dbo.VIEWEMPLOYEE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VIEWEMPLOYEE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdRole" Type="char" MaxLength="1" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QLBAIXE.dbo.VIEWHYSTORY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VIEWHYSTORY">
+          <Key>
+            <PropertyRef Name="LicensePlate" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="CheckOutTime" Type="datetime" />
+          <Property Name="LicensePlate" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="Price" Type="money" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -192,6 +222,26 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           <EntitySet Name="INFOPARKING" EntityType="Self.INFOPARKING" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PARKING" EntityType="Self.PARKING" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIEWEMPLOYEE" EntityType="Self.VIEWEMPLOYEE" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VIEWEMPLOYEE].[Id] AS [Id], 
+    [VIEWEMPLOYEE].[UserName] AS [UserName], 
+    [VIEWEMPLOYEE].[Password] AS [Password], 
+    [VIEWEMPLOYEE].[DisplayName] AS [DisplayName], 
+    [VIEWEMPLOYEE].[IdRole] AS [IdRole]
+    FROM [dbo].[VIEWEMPLOYEE] AS [VIEWEMPLOYEE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VIEWHYSTORY" EntityType="Self.VIEWHYSTORY" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VIEWHYSTORY].[CheckOutTime] AS [CheckOutTime], 
+    [VIEWHYSTORY].[LicensePlate] AS [LicensePlate], 
+    [VIEWHYSTORY].[Name] AS [Name], 
+    [VIEWHYSTORY].[Code] AS [Code], 
+    [VIEWHYSTORY].[Price] AS [Price], 
+    [VIEWHYSTORY].[DisplayName] AS [DisplayName], 
+    [VIEWHYSTORY].[UserName] AS [UserName]
+    FROM [dbo].[VIEWHYSTORY] AS [VIEWHYSTORY]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VIEWPARKING" EntityType="Self.VIEWPARKING" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VIEWPARKING].[Code] AS [Code], 
@@ -223,8 +273,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
             <End Role="PARKING" EntitySet="PARKING" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLBAIXEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -260,6 +309,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           <Property Name="IdRole" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Bills" Relationship="Self.fk_bill_employee" FromRole="EMPLOYEE" ToRole="Bill" />
           <NavigationProperty Name="INFOCARs" Relationship="Self.fk_ifcar_employee" FromRole="EMPLOYEE" ToRole="INFOCAR" />
+          <Property Name="Status" Type="Boolean" />
         </EntityType>
         <EntityType Name="INFOCAR">
           <Key>
@@ -285,6 +335,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Count" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PARKINGs" Relationship="Self.fk_PARKING_infoPARKING" FromRole="INFOPARKING" ToRole="PARKING" />
+          <Property Name="Status" Type="Boolean" />
         </EntityType>
         <EntityType Name="PARKING">
           <Key>
@@ -449,6 +500,8 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="VIEWEMPLOYEEs" EntityType="QLBAIXEModel.VIEWEMPLOYEE" />
+          <EntitySet Name="VIEWHYSTORies" EntityType="QLBAIXEModel.VIEWHYSTORY" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -461,6 +514,30 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="VIEWEMPLOYEE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdRole" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VIEWHYSTORY">
+          <Key>
+            <PropertyRef Name="LicensePlate" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
+          <Property Name="LicensePlate" Type="String" Nullable="false" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -490,6 +567,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           <EntitySetMapping Name="EMPLOYEEs">
             <EntityTypeMapping TypeName="QLBAIXEModel.EMPLOYEE">
               <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -514,6 +592,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           <EntitySetMapping Name="INFOPARKINGs">
             <EntityTypeMapping TypeName="QLBAIXEModel.INFOPARKING">
               <MappingFragment StoreEntitySet="INFOPARKING">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
@@ -572,6 +651,30 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QLBAIXEModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QLBAIXEModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="VIEWEMPLOYEEs">
+            <EntityTypeMapping TypeName="QLBAIXEModel.VIEWEMPLOYEE">
+              <MappingFragment StoreEntitySet="VIEWEMPLOYEE">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VIEWHYSTORies">
+            <EntityTypeMapping TypeName="QLBAIXEModel.VIEWHYSTORY">
+              <MappingFragment StoreEntitySet="VIEWHYSTORY">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

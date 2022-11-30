@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Threading;
 using QLBAIGUIXE.Model;
@@ -66,7 +67,12 @@ namespace QLBAIGUIXE.ViewModel
                 var w = window as Window;
                 if (w != null)
                 {
-                    w.Close();
+                    var result = MessageBox.Show("Bạn có chắc chắn muốn thoát không?", "Thông báo",
+                    MessageBoxButton.OKCancel);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        w.Close();
+                    }
                 }
             }
             );

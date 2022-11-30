@@ -24,6 +24,7 @@
     <EntitySetMapping Name="EMPLOYEEs">
       <EntityTypeMapping TypeName="QLBAIXEModel.EMPLOYEE">
         <MappingFragment StoreEntitySet="EMPLOYEE">
+          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Password" ColumnName="Password" />
@@ -48,6 +49,7 @@
     <EntitySetMapping Name="INFOPARKINGs">
       <EntityTypeMapping TypeName="QLBAIXEModel.INFOPARKING">
         <MappingFragment StoreEntitySet="INFOPARKING">
+          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Count" ColumnName="Count" />
@@ -106,5 +108,29 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QLBAIXEModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QLBAIXEModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="VIEWEMPLOYEEs">
+      <EntityTypeMapping TypeName="QLBAIXEModel.VIEWEMPLOYEE">
+        <MappingFragment StoreEntitySet="VIEWEMPLOYEE">
+          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VIEWHYSTORies">
+      <EntityTypeMapping TypeName="QLBAIXEModel.VIEWHYSTORY">
+        <MappingFragment StoreEntitySet="VIEWHYSTORY">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+          <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

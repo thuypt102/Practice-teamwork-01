@@ -9,15 +9,12 @@
 
 namespace QLBAIGUIXE.Model
 {
-    using QLBAIGUIXE.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class VIEWPARKING: BaseViewModel
+    public partial class VIEWPARKING
     {
-        private string _LicensePlate { get; set; }
-        public string LicensePlate { get => _LicensePlate; set { _LicensePlate = value; OnPropertyChanged(); } }
-        private string _Code { get; set; }
-        public string Code { get => _Code; set { _Code = value; OnPropertyChanged(); } }
+        public string Code { get; set; }
+        public string LicensePlate { get; set; }
     }
 }

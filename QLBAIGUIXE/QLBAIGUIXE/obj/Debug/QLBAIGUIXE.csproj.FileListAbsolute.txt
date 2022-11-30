@@ -45,3 +45,11 @@ D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\BillWindow.g.cs
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\BillWindow.baml
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\UserControlStaff.g.cs
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\UserControlStaff.baml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\UserControlAdmin.g.cs
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\UserControlAdmin.baml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\EmployeeUC.g.cs
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\ParkingUC.g.cs
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\TrackHistoryUC.g.cs
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\EmployeeUC.baml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\ParkingUC.baml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\TrackHistoryUC.baml

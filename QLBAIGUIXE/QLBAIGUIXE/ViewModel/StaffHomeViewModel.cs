@@ -1,27 +1,22 @@
 ﻿using QLBAIGUIXE.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace QLBAIGUIXE.ViewModel
 {
-    public class StaffHomeViewModel:BaseViewModel
+    public class StaffHomeViewModel : BaseViewModel
     {
         private string _LicensePlate { get; set; }
-        public string LicensePlate { get => _LicensePlate;set { _LicensePlate = value; OnPropertyChanged(); } }
+        public string LicensePlate { get => _LicensePlate; set { _LicensePlate = value; OnPropertyChanged(); } }
         private string _Code { get; set; }
         public string Code { get => _Code; set { _Code = value; OnPropertyChanged(); } }
         private string _DisplayName { get; set; }
         public string DisplayName { get => _DisplayName; set { _DisplayName = value; OnPropertyChanged(); } }
         private string _Phone { get; set; }
         public string Phone { get => _Phone; set { _Phone = value; OnPropertyChanged(); } }
-        
+
         private string _Search { get; set; }
         public string Search { get => _Search; set { _Search = value; OnPropertyChanged(); } }
         private string _MotoBike { get; set; }
@@ -29,7 +24,7 @@ namespace QLBAIGUIXE.ViewModel
 
         private string _Car { get; set; }
         public string Car { get => _Car; set { _Car = value; OnPropertyChanged(); } }
-        
+
         private ObservableCollection<Model.VIEWPARKING> _ViewParking;
         public ObservableCollection<Model.VIEWPARKING> ViewParking { get => _ViewParking; set { _ViewParking = value; OnPropertyChanged(); } }
         private Model.VIEWPARKING _SelectedViewParking;
@@ -40,7 +35,7 @@ namespace QLBAIGUIXE.ViewModel
             {
                 _SelectedViewParking = value;
                 OnPropertyChanged();
-                
+
 
             }
         }
@@ -53,7 +48,7 @@ namespace QLBAIGUIXE.ViewModel
         private ObservableCollection<Model.INFOPARKING> _INFOPARKING;
         public ObservableCollection<Model.INFOPARKING> INFOPARKING { get => _INFOPARKING; set { _INFOPARKING = value; OnPropertyChanged(); } }
 
-        private Model.INFOPARKING _SelectedInfoParking; 
+        private Model.INFOPARKING _SelectedInfoParking;
         public Model.INFOPARKING SelectedInfoParking
         {
             get => _SelectedInfoParking;
@@ -61,23 +56,23 @@ namespace QLBAIGUIXE.ViewModel
             {
                 _SelectedInfoParking = value;
                 OnPropertyChanged();
-                
+
             }
         }
-        
+
 
         public StaffHomeViewModel()
         {
-            INFOPARKING = new ObservableCollection<Model.INFOPARKING>(DataProvider.Ins.DB.INFOPARKINGs);
+            INFOPARKING = new ObservableCollection<Model.INFOPARKING>(DataProvider.Ins.DB.INFOPARKINGs.Where(x => x.Status == true));
             ViewParking = new ObservableCollection<Model.VIEWPARKING>(DataProvider.Ins.DB.VIEWPARKINGs);
             Car = "Ô tô: " + Count(1) + "/" + Capacity(1);
-            MotoBike = "Xe máy: "+Count(2)+"/"+ Capacity(2) ;
+            MotoBike = "Xe máy: " + Count(2) + "/" + Capacity(2);
             AddCommand = new RelayCommand<object>((p) =>
             {
                 if (string.IsNullOrEmpty(DisplayName) || string.IsNullOrEmpty(Phone) || string.IsNullOrEmpty(Code) || string.IsNullOrEmpty(LicensePlate))
                     return false;
 
-                
+
                 var plicense = DataProvider.Ins.DB.INFOCARs.Where(x => x.LicensePlate == LicensePlate && x.CheckOutTime == null).Count();
                 if (plicense > 0)
                     return false;
@@ -95,6 +90,7 @@ namespace QLBAIGUIXE.ViewModel
                 DataProvider.Ins.DB.PARKINGs.Add(parking);
                 DataProvider.Ins.DB.SaveChanges();
                 var vp = new Model.VIEWPARKING() { Code = Code, LicensePlate = LicensePlate };
+                updatecount();
                 ViewParking.Add(vp);
             });
             ClickCommand = new RelayCommand<object>((p) =>
@@ -108,52 +104,63 @@ namespace QLBAIGUIXE.ViewModel
             }, (p) =>
             {
 
-                 
-                    ViewParking = new ObservableCollection<Model.VIEWPARKING>(DataProvider.Ins.DB.VIEWPARKINGs.Where(x => x.Code.Contains(Search)));
+
+                ViewParking = new ObservableCollection<Model.VIEWPARKING>(DataProvider.Ins.DB.VIEWPARKINGs.Where(x => x.Code.Contains(Search)));
 
 
             });
-            
-            
 
-        }
 
-        void OnOpenCheckOut(object commandParameter)
-        {
-            VIEWPARKING vp = commandParameter as VIEWPARKING;
-            if(vp != null)
+
+
+
+            void OnOpenCheckOut(object commandParameter)
             {
-                DataProvider.Ins.setdata(vp.LicensePlate, vp.Code);
-                BillWindow billWindow = new BillWindow();
-                billWindow.ShowDialog();
-                var BillVM = billWindow.DataContext as BillViewModel;
-                if (BillVM.Ispayment)
+                VIEWPARKING vp = commandParameter as VIEWPARKING;
+                if (vp != null)
                 {
-                    ViewParking.Remove(vp);
+                    DataProvider.Ins.setdata(vp.LicensePlate, vp.Code);
+                    BillWindow billWindow = new BillWindow();
+                    billWindow.ShowDialog();
+                    var BillVM = billWindow.DataContext as BillViewModel;
+                    if (BillVM.Ispayment)
+                    {
+                        ViewParking.Remove(vp);
+                        updatecount();
+                    }
                 }
             }
-        }
 
-        int Count(int Type)
-        {
-            return DataProvider.Ins.DB.INFOCARs.Where(x => x.Type == Type && x.CheckOutTime == null).Count();
-        }
-
-        int Capacity(int Type)
-        {
-            int Count = 0;
-            var capacity = DataProvider.Ins.DB.INFOPARKINGs.Where(x => x.Type == Type);
-            foreach(var count in capacity)
+            int Count(int Type)
             {
-                return Count = count.Count;
+                return DataProvider.Ins.DB.INFOCARs.Where(x => x.Type == Type && x.CheckOutTime == null).Count();
             }
-            return Count;
+
+            int Capacity(int Type)
+            {
+                int c = 0;
+                var capacity = DataProvider.Ins.DB.INFOPARKINGs.Where(x => x.Type == Type);
+                foreach (var count in capacity)
+                {
+                    return c = count.Count;
+                }
+                return c;
+            }
+
+            void updatecount()
+            {
+                if (SelectedInfoParking.Type == 1)
+                {
+                    Car = "Ô tô: " + Count(1) + "/" + Capacity(1);
+                }
+                else MotoBike = "Xe máy: " + Count(2) + "/" + Capacity(2);
+            }
+
+
+
+
+
         }
-
-
-
-
 
     }
-
 }

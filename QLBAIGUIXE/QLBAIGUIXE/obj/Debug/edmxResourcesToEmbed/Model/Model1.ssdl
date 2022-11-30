@@ -27,6 +27,7 @@
     <Property Name="Password" Type="varchar" MaxLength="50" />
     <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
     <Property Name="IdRole" Type="char" MaxLength="1" />
+    <Property Name="Status" Type="bit" />
   </EntityType>
   <EntityType Name="INFOCAR">
     <Key>
@@ -47,6 +48,7 @@
     <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="Status" Type="bit" />
   </EntityType>
   <EntityType Name="PARKING">
     <Key>
@@ -65,6 +67,34 @@
     <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLBAIXE.dbo.VIEWEMPLOYEE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VIEWEMPLOYEE">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdRole" Type="char" MaxLength="1" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLBAIXE.dbo.VIEWHYSTORY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VIEWHYSTORY">
+    <Key>
+      <PropertyRef Name="LicensePlate" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="CheckOutTime" Type="datetime" />
+    <Property Name="LicensePlate" Type="char" MaxLength="9" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Code" Type="char" MaxLength="12" Nullable="false" />
+    <Property Name="Price" Type="money" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -187,6 +217,26 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
     <EntitySet Name="INFOPARKING" EntityType="Self.INFOPARKING" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PARKING" EntityType="Self.PARKING" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VIEWEMPLOYEE" EntityType="Self.VIEWEMPLOYEE" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VIEWEMPLOYEE].[Id] AS [Id], 
+    [VIEWEMPLOYEE].[UserName] AS [UserName], 
+    [VIEWEMPLOYEE].[Password] AS [Password], 
+    [VIEWEMPLOYEE].[DisplayName] AS [DisplayName], 
+    [VIEWEMPLOYEE].[IdRole] AS [IdRole]
+    FROM [dbo].[VIEWEMPLOYEE] AS [VIEWEMPLOYEE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VIEWHYSTORY" EntityType="Self.VIEWHYSTORY" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VIEWHYSTORY].[CheckOutTime] AS [CheckOutTime], 
+    [VIEWHYSTORY].[LicensePlate] AS [LicensePlate], 
+    [VIEWHYSTORY].[Name] AS [Name], 
+    [VIEWHYSTORY].[Code] AS [Code], 
+    [VIEWHYSTORY].[Price] AS [Price], 
+    [VIEWHYSTORY].[DisplayName] AS [DisplayName], 
+    [VIEWHYSTORY].[UserName] AS [UserName]
+    FROM [dbo].[VIEWHYSTORY] AS [VIEWHYSTORY]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="VIEWPARKING" EntityType="Self.VIEWPARKING" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [VIEWPARKING].[Code] AS [Code], 

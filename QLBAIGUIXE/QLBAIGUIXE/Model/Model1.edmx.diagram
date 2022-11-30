@@ -19,6 +19,8 @@
         <AssociationConnector Association="QLBAIXEModel.fk_ifcar_employee" ManuallyRouted="false" />
         <AssociationConnector Association="QLBAIXEModel.fk_PARKING_infocar" ManuallyRouted="false" />
         <AssociationConnector Association="QLBAIXEModel.fk_PARKING_infoPARKING" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLBAIXEModel.VIEWEMPLOYEE" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="QLBAIXEModel.VIEWHYSTORY" Width="1.5" PointX="3.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
