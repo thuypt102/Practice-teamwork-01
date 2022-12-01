@@ -67,7 +67,7 @@ namespace QLBAIGUIXE.ViewModel
         }
 
 
-
+        
         public ICommand ButtonOpenMenu_Click { get; set; } 
         public ICommand ButtonCloseMenu_Click { get; set; }
         public ICommand ListViewMenu_SelectionChanged { get; set; }
@@ -76,6 +76,7 @@ namespace QLBAIGUIXE.ViewModel
         public AdminHomeViewModel()
 
         {
+            
             ButtonOpenMenu_Click = new RelayCommand<object>((p) =>
             {
                 return true;
@@ -115,8 +116,8 @@ namespace QLBAIGUIXE.ViewModel
                 {
                     
                     case "ItemHome":
-                        //usc = new ParkingUC();
-                        //GridMain.Children.Add(usc);
+                        usc = new UserControlHome();
+                        GridMain.Children.Add(usc);
                         break;
                     case "ItemCreate":
                         usc = new EmployeeUC();

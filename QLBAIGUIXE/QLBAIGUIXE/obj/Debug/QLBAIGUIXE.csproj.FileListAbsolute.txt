@@ -53,3 +53,5 @@ D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\EmployeeUC.baml
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\ParkingUC.baml
 D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\TrackHistoryUC.baml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\UserControlHome.g.cs
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\UserControlHome.baml

@@ -94,7 +94,7 @@
 
                     </Grid.RowDefinitions>
 
-                    <Grid Margin="10,20,10,0" Grid.Row="0">
+                        <Grid Margin="10,20,10,0" Grid.Row="0">
                         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}">
                             <materialDesign:HintAssist.Hint>
                                 <StackPanel Orientation="Horizontal" Margin="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
@@ -110,6 +110,19 @@
                             </i:Interaction.Triggers>
                         </TextBox>
                     </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock Margin="15,0,5,0" Text="{Binding MotoBike}" VerticalAlignment="Bottom"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            
+                            <TextBlock Margin="15,0,5,0" Text="{Binding Car}" VerticalAlignment="Bottom"/>
+                        </Grid>
+                    </Grid>
 
                     
 
@@ -122,10 +135,7 @@
                 </Grid.RowDefinitions>
                 <DockPanel Grid.Row="0">
                     <TextBlock DockPanel.Dock="Left" Foreground="Gray" FontSize="12">Danh sách xe gửi</TextBlock>
-                    <WrapPanel DockPanel.Dock="Right"  >
-                        <TextBlock FontSize="12" Margin="15,0,5,0" Text="{Binding MotoBike}"/>
-                        <TextBlock FontSize="12" Margin="15,0,5,0" Text="{Binding Car}"/>
-                    </WrapPanel>
+                    
                 </DockPanel>
                 <materialDesign:Card Grid.Row="1" Margin="5" VerticalAlignment="Stretch">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">

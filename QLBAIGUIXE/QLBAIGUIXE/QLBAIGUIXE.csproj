@@ -171,6 +171,9 @@
     <Compile Include="UserControlTeam1\UserControlAdmin.xaml.cs">
       <DependentUpon>UserControlAdmin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlTeam1\UserControlHome.xaml.cs">
+      <DependentUpon>UserControlHome.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlTeam1\UserControlStaff.xaml.cs">
       <DependentUpon>UserControlStaff.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,7 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BillViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MyValueConverter.cs" />
     <Compile Include="ViewModel\ParkingViewModel.cs" />
     <Compile Include="ViewModel\StaffHomeViewModel.cs" />
@@ -229,6 +233,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControlTeam1\UserControlAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlTeam1\UserControlHome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using QLBAIGUIXE.Model;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Threading;
-using QLBAIGUIXE.Model;
-using QLBAIGUIXE.ViewModel;
 
 
 namespace QLBAIGUIXE.ViewModel
 {
-    public class ControlBarViewModel : BaseViewModel 
+    public class ControlBarViewModel : BaseViewModel
     {
         #region commands
         public ICommand CloseWindowCommand { get; set; }
@@ -23,14 +15,15 @@ namespace QLBAIGUIXE.ViewModel
         public ICommand MinimizeWindowCommand { get; set; }
         public ICommand MouseMoveWindowCommand { get; set; }
         public ICommand LoadedCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
         #endregion
 
 
         private string _DisplayName { get; set; }
-        public string DisplayName { get=> _DisplayName; set { _DisplayName = value; OnPropertyChanged(); } }
+        public string DisplayName { get => _DisplayName; set { _DisplayName = value; OnPropertyChanged(); } }
 
         private Visibility _IsAccount { get; set; }
-        public Visibility IsAccount { get => _IsAccount; set { _IsAccount = value; OnPropertyChanged(); } } 
+        public Visibility IsAccount { get => _IsAccount; set { _IsAccount = value; OnPropertyChanged(); } }
 
 
 
@@ -41,7 +34,7 @@ namespace QLBAIGUIXE.ViewModel
 
             LoadedCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
-                
+
                 if (p == null)
                     return;
                 if (DataProvider.Ins.Acc != 0)
@@ -57,12 +50,13 @@ namespace QLBAIGUIXE.ViewModel
                 {
                     IsAccount = Visibility.Hidden;
                 }
-                
+
 
 
             });
 
-            CloseWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) => {
+            CloseWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) =>
+            {
                 FrameworkElement window = GetWindowParent(p);
                 var w = window as Window;
                 if (w != null)
@@ -112,6 +106,27 @@ namespace QLBAIGUIXE.ViewModel
                 }
             }
            );
+            LogoutCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) =>
+            {
+                FrameworkElement window = GetWindowParent(p);
+                var w = window as MainWindow;
+                if (w != null)
+                {
+
+                    DataProvider.Ins.Acc = -1;
+                    DataProvider.Ins.setdata(null, null);
+                    w.Close();
+                    Application.Current.MainWindow = null;
+
+                    
+                    
+
+
+
+
+                }
+            }
+            );
         }
 
         FrameworkElement GetWindowParent(UserControl p)
@@ -125,7 +140,7 @@ namespace QLBAIGUIXE.ViewModel
 
             return parent;
         }
-        
-        
+
+
     }
 }

@@ -37,14 +37,29 @@
                             <ColumnDefinition Width="40"> </ColumnDefinition>
                             
                             <ColumnDefinition Width="auto" ></ColumnDefinition>
-                            
+                            <ColumnDefinition Width="auto" ></ColumnDefinition>
+
+
                         </Grid.ColumnDefinitions>
                         <Grid Visibility="{Binding IsAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0">
                             <materialDesign:PackIcon Kind="AccountCircle" HorizontalAlignment="Center" VerticalAlignment="Center" Width="30" Height="30" />
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBlock Text="{Binding DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontWeight="Bold" TextDecorations="Underline" FontSize="14"/>
-                        </Grid>
+                        </Grid >
+                        <materialDesign:PopupBox Grid.Column="3" Visibility="{Binding IsAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" PlacementMode="BottomAndAlignRightEdges">
+                            <Button
+                                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                    BorderThickness="1"
+                                    BorderBrush="Transparent"
+                                    Command="{Binding LogoutCommand}"
+                                    CommandParameter="{Binding ElementName=ucControlBar}"
+                                    Background="Transparent"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightButton">
+                                Log out
+                                
+                            </Button>
+                        </materialDesign:PopupBox>
                     </Grid>
                     
                     <Button ToolTip="Ẩn" Command="{Binding MinimizeWindowCommand}" 
