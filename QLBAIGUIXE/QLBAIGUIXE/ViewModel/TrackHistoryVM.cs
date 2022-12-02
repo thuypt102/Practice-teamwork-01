@@ -64,14 +64,6 @@ namespace QLBAIGUIXE.ViewModel
 
             DisplayCommand = new RelayCommand<object>((p) =>
             {
-                /*
-                string dateB = dateBegin.ToString();
-                string dateE = dateEnd.ToString();
-                if (string.IsNullOrEmpty(dateB) || string.IsNullOrEmpty(dateE))
-                {
-                    return false;
-                }
-                */
                 if (((TimeSpan)(dateBegin - dateEnd)).Days > 0)
                     return false;
                 else
