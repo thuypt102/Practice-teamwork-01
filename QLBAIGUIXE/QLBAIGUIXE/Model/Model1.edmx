@@ -93,6 +93,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWHYSTORY' does not have a primary k
             <PropertyRef Name="Name" />
             <PropertyRef Name="Code" />
           </Key>
+          <Property Name="CheckInTime" Type="datetime" />
           <Property Name="CheckOutTime" Type="datetime" />
           <Property Name="LicensePlate" Type="char" MaxLength="9" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -233,6 +234,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           </EntitySet>
           <EntitySet Name="VIEWHYSTORY" EntityType="Self.VIEWHYSTORY" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [VIEWHYSTORY].[CheckInTime] AS [CheckInTime], 
     [VIEWHYSTORY].[CheckOutTime] AS [CheckOutTime], 
     [VIEWHYSTORY].[LicensePlate] AS [LicensePlate], 
     [VIEWHYSTORY].[Name] AS [Name], 
@@ -537,6 +539,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CheckInTime" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -665,6 +668,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           <EntitySetMapping Name="VIEWHYSTORies">
             <EntityTypeMapping TypeName="QLBAIXEModel.VIEWHYSTORY">
               <MappingFragment StoreEntitySet="VIEWHYSTORY">
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
                 <ScalarProperty Name="Price" ColumnName="Price" />

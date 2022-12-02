@@ -132,8 +132,8 @@
                                     </i:Interaction.Triggers>
                                     <ListView.View>
                                         <GridView>
-                                            <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}"></GridViewColumn>
-                                            <GridViewColumn Header="LicensePlate" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
+                                            <GridViewColumn Header="CCCD/CMND" DisplayMemberBinding="{Binding Code}"></GridViewColumn>
+                                            <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
 
                                         </GridView>
                                     </ListView.View>
@@ -164,8 +164,8 @@
                             </i:Interaction.Triggers>
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}"></GridViewColumn>
-                                    <GridViewColumn Header="LicensePlate" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
+                                    <GridViewColumn Header="CCCD/CMND" DisplayMemberBinding="{Binding Code}"></GridViewColumn>
+                                    <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
                                     
                                 </GridView>
                             </ListView.View>
