@@ -54,10 +54,6 @@ namespace QLBAIGUIXE.ViewModel
         }
         public ICommand DisplayCommand { get; set; }
 
-        void TimeCheck()
-        {
-
-        }
         public TrackHistoryVM()
         {
             List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
@@ -86,10 +82,15 @@ namespace QLBAIGUIXE.ViewModel
                 var list = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
                 foreach (var item in list)
                 {
+                    /*
                     DateTime dateTime = ((DateTime)item.CheckOutTime);
                     TimeSpan timestart = dateBegin - dateTime;
                     TimeSpan timend = dateTime - dateEnd;
                     if (timestart.Days < 0 || timend.Days < 0)
+                        List.Remove(item);
+                    */
+                    DateTime dateTime = ((DateTime)item.CheckOutTime);
+                    if (DateTime.Compare(dateTime, dateBegin) < 0 || DateTime.Compare(dateTime, dateEnd.AddMinutes(1439)) > 0)
                         List.Remove(item);
                 }
             });
