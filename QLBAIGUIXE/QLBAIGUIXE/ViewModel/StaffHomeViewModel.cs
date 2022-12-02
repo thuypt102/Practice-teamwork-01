@@ -91,28 +91,29 @@ namespace QLBAIGUIXE.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
                 var vp = new Model.VIEWPARKING() { Code = Code, LicensePlate = LicensePlate };
                 updatecount();
+                Code = "";
+                LicensePlate = "";
+                Phone = "";
+                DisplayName = "";
                 ViewParking.Add(vp);
             });
+
             ClickCommand = new RelayCommand<object>((p) =>
             {
                 return true;
             }, (p) =>
             { OnOpenCheckOut(p); });
+
             SearchCommand = new RelayCommand<object>((p) =>
             {
                 return true;
             }, (p) =>
             {
 
-
                 ViewParking = new ObservableCollection<Model.VIEWPARKING>(DataProvider.Ins.DB.VIEWPARKINGs.Where(x => x.Code.Contains(Search)));
 
 
             });
-
-
-
-
 
             void OnOpenCheckOut(object commandParameter)
             {
