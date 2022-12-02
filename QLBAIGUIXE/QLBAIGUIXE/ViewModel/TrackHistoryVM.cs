@@ -1,7 +1,6 @@
 ﻿using QLBAIGUIXE.Model;
 using System;
 using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Input;
 
 namespace QLBAIGUIXE.ViewModel
@@ -23,8 +22,10 @@ namespace QLBAIGUIXE.ViewModel
         private string _UserName;
         public string UserName { get => _UserName; set { _UserName = value; OnPropertyChanged(); } }
 
-        public DateTime dateBegin;
-        public DateTime dateEnd;
+        private DateTime _dateBegin;
+        public DateTime dateBegin { get => _dateBegin; set { _dateBegin = value; OnPropertyChanged(); } }
+        private DateTime _dateEnd;
+        public DateTime dateEnd { get => _dateEnd; set { _dateEnd = value; OnPropertyChanged(); } }
 
         private ObservableCollection<VIEWHYSTORY> _List;
         public ObservableCollection<VIEWHYSTORY> List
@@ -61,8 +62,8 @@ namespace QLBAIGUIXE.ViewModel
         {
             List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
             DateTime today = DateTime.Now;
-            dateBegin = new DateTime(today.Year, today.Month, 1);
-            dateEnd = dateBegin.AddMonths(1).AddDays(-1);
+            dateBegin = today;
+            dateEnd = today;
 
             DisplayCommand = new RelayCommand<object>((p) =>
             {
@@ -70,18 +71,28 @@ namespace QLBAIGUIXE.ViewModel
                 string dateB = dateBegin.ToString();
                 string dateE = dateEnd.ToString();
                 if (string.IsNullOrEmpty(dateB) || string.IsNullOrEmpty(dateE))
+                {
+                    return false;
+                }
+
+                if (((TimeSpan)(dateBegin - dateEnd)).Days > 0)
                     return false;
                 else
                     return true;
 
             }, (p) =>
             {
-
-                MessageBox.Show("okokoko!", "Thông báo");
-
+                List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
+                var list = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
+                foreach (var item in list)
+                {
+                    DateTime dateTime = ((DateTime)item.CheckOutTime);
+                    TimeSpan timestart = dateBegin - dateTime;
+                    TimeSpan timend = dateTime - dateEnd;
+                    if (timestart.Days < 0 || timend.Days < 0)
+                        List.Remove(item);
+                }
             });
-
-
         }
     }
 }
