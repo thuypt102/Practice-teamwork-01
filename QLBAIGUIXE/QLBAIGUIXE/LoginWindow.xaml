@@ -55,12 +55,12 @@
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
-                        <TextBox materialDesign:HintAssist.Hint="Username"
+                        <TextBox materialDesign:HintAssist.Hint="Tên đăng nhập"
                                  Text="{Binding UserName}"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     </Grid>
                     <Grid Grid.Row="1">
-                        <PasswordBox materialDesign:HintAssist.Hint="Password"
+                        <PasswordBox materialDesign:HintAssist.Hint="Mật khẩu"
                                      x:Name="FloatingPasswordBox"
                                      Style="{StaticResource MaterialDesignFloatingHintPasswordBox}">
                                      <i:Interaction.Triggers>
@@ -82,7 +82,7 @@
                                     CommandParameter="{Binding ElementName=loginWindow}"
                                     Background="Green"
                                     ToolTip="Resource name: MaterialDesignRaisedButton">
-                                _Login
+                                _Đăng nhập
                                 
                             </Button>
                         </Grid>
@@ -93,7 +93,7 @@
                                     CommandParameter="{Binding ElementName=loginWindow}"
                                     Background="Red"
                                     ToolTip="Resource name: MaterialDesignRaisedButton">
-                                _Exit
+                                _Thoát
                                 
                             </Button>
                         </Grid>
