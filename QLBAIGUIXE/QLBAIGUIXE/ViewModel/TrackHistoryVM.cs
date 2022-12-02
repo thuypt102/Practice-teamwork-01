@@ -58,20 +58,22 @@ namespace QLBAIGUIXE.ViewModel
         {
             List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
             DateTime today = DateTime.Now;
+
             dateBegin = today;
             dateEnd = today;
 
             DisplayCommand = new RelayCommand<object>((p) =>
             {
-                //string timeStr = CheckOutTime.ToString();
+                /*
                 string dateB = dateBegin.ToString();
                 string dateE = dateEnd.ToString();
                 if (string.IsNullOrEmpty(dateB) || string.IsNullOrEmpty(dateE))
                 {
                     return false;
                 }
-
+                */
                 if (((TimeSpan)(dateBegin - dateEnd)).Days > 0)
+                    //if (DateTime.Compare(dateBegin, dateEnd) > 0)
                     return false;
                 else
                     return true;
@@ -80,10 +82,12 @@ namespace QLBAIGUIXE.ViewModel
             {
                 List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
                 var list = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
+
                 foreach (var item in list)
                 {
                     DateTime dateTime = ((DateTime)item.CheckOutTime);
-                    if (DateTime.Compare(dateTime, dateBegin) < 0 || DateTime.Compare(dateTime, dateEnd.AddMinutes(1439)) > 0)
+                    if (DateTime.Compare(dateTime, dateBegin) < 0 ||
+                        DateTime.Compare(dateTime, (dateEnd.AddMinutes(1438))) > 0)
                         List.Remove(item);
                 }
             });

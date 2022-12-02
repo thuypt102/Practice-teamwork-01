@@ -56,7 +56,7 @@
                                     CommandParameter="{Binding ElementName=ucControlBar}"
                                     Background="Transparent"
                                     ToolTip="Resource name: MaterialDesignRaisedLightButton">
-                                Log out
+                                Đăng xuất
                                 
                             </Button>
                         </materialDesign:PopupBox>
