@@ -73,21 +73,22 @@ namespace QLBAIGUIXE.ViewModel
                 }
                 */
                 if (((TimeSpan)(dateBegin - dateEnd)).Days > 0)
-                    //if (DateTime.Compare(dateBegin, dateEnd) > 0)
                     return false;
                 else
                     return true;
 
             }, (p) =>
             {
+                DateTime timestart = dateBegin.Date;
+                DateTime timeend = dateEnd.Date;
                 List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
                 var list = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
 
                 foreach (var item in list)
                 {
-                    DateTime dateTime = ((DateTime)item.CheckOutTime);
-                    if (DateTime.Compare(dateTime, dateBegin) < 0 ||
-                        DateTime.Compare(dateTime, (dateEnd.AddMinutes(1438))) > 0)
+                    DateTime dateTime = ((DateTime)item.CheckOutTime).Date;
+
+                    if (DateTime.Compare(dateTime, timestart) < 0 || DateTime.Compare(dateTime, timeend) > 0)
                         List.Remove(item);
                 }
             });

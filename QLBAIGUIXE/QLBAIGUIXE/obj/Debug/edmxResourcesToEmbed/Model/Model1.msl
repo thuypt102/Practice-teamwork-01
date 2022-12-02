@@ -24,12 +24,12 @@
     <EntitySetMapping Name="EMPLOYEEs">
       <EntityTypeMapping TypeName="QLBAIXEModel.EMPLOYEE">
         <MappingFragment StoreEntitySet="EMPLOYEE">
-          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
           <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -49,10 +49,10 @@
     <EntitySetMapping Name="INFOPARKINGs">
       <EntityTypeMapping TypeName="QLBAIXEModel.INFOPARKING">
         <MappingFragment StoreEntitySet="INFOPARKING">
-          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -76,47 +76,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="VIEWPARKINGs">
-      <EntityTypeMapping TypeName="QLBAIXEModel.VIEWPARKING">
-        <MappingFragment StoreEntitySet="VIEWPARKING">
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
-          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QLBAIXEModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QLBAIXEModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QLBAIXEModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QLBAIXEModel.Store.sp_helpdiagramdefinition">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="QLBAIXEModel.sp_helpdiagramdefinition_Result">
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QLBAIXEModel.Store.sp_helpdiagrams">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="QLBAIXEModel.sp_helpdiagrams_Result">
-          <ScalarProperty Name="Database" ColumnName="Database" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QLBAIXEModel.Store.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QLBAIXEModel.Store.sp_upgraddiagrams" />
     <EntitySetMapping Name="VIEWEMPLOYEEs">
       <EntityTypeMapping TypeName="QLBAIXEModel.VIEWEMPLOYEE">
         <MappingFragment StoreEntitySet="VIEWEMPLOYEE">
-          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
-          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -124,15 +91,31 @@
       <EntityTypeMapping TypeName="QLBAIXEModel.VIEWHYSTORY">
         <MappingFragment StoreEntitySet="VIEWHYSTORY">
           <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
           <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="VIEWPARKINGs">
+      <EntityTypeMapping TypeName="QLBAIXEModel.VIEWPARKING">
+        <MappingFragment StoreEntitySet="VIEWPARKING">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QLBAIXEModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QLBAIXEModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QLBAIXEModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QLBAIXEModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QLBAIXEModel.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QLBAIXEModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QLBAIXEModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>

@@ -30,9 +30,9 @@
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="IdRole" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
     <NavigationProperty Name="Bills" Relationship="Self.fk_bill_employee" FromRole="EMPLOYEE" ToRole="Bill" />
     <NavigationProperty Name="INFOCARs" Relationship="Self.fk_ifcar_employee" FromRole="EMPLOYEE" ToRole="INFOCAR" />
-    <Property Name="Status" Type="Boolean" />
   </EntityType>
   <EntityType Name="INFOCAR">
     <Key>
@@ -57,8 +57,8 @@
     <Property Name="Type" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Count" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="PARKINGs" Relationship="Self.fk_PARKING_infoPARKING" FromRole="INFOPARKING" ToRole="PARKING" />
     <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="PARKINGs" Relationship="Self.fk_PARKING_infoPARKING" FromRole="INFOPARKING" ToRole="PARKING" />
   </EntityType>
   <EntityType Name="PARKING">
     <Key>
@@ -79,6 +79,31 @@
     <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="VIEWEMPLOYEE">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdRole" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VIEWHYSTORY">
+    <Key>
+      <PropertyRef Name="LicensePlate" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
+    <Property Name="LicensePlate" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CheckInTime" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="VIEWPARKING">
     <Key>
@@ -170,6 +195,8 @@
     <EntitySet Name="INFOPARKINGs" EntityType="Self.INFOPARKING" />
     <EntitySet Name="PARKINGs" EntityType="Self.PARKING" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="VIEWEMPLOYEEs" EntityType="Self.VIEWEMPLOYEE" />
+    <EntitySet Name="VIEWHYSTORies" EntityType="Self.VIEWHYSTORY" />
     <EntitySet Name="VIEWPARKINGs" EntityType="Self.VIEWPARKING" />
     <AssociationSet Name="fk_bill_employee" Association="Self.fk_bill_employee">
       <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
@@ -211,11 +238,11 @@
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QLBAIXEModel.sp_helpdiagramdefinition_Result)">
+    <FunctionImport Name="sp_helpdiagramdefinition">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QLBAIXEModel.sp_helpdiagrams_Result)">
+    <FunctionImport Name="sp_helpdiagrams">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -225,43 +252,5 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
-    <EntitySet Name="VIEWEMPLOYEEs" EntityType="QLBAIXEModel.VIEWEMPLOYEE" />
-    <EntitySet Name="VIEWHYSTORies" EntityType="QLBAIXEModel.VIEWHYSTORY" />
   </EntityContainer>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagrams_Result">
-    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
-  <EntityType Name="VIEWEMPLOYEE">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="IdRole" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-  </EntityType>
-  <EntityType Name="VIEWHYSTORY">
-    <Key>
-      <PropertyRef Name="LicensePlate" />
-      <PropertyRef Name="Name" />
-      <PropertyRef Name="Code" />
-    </Key>
-    <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
-    <Property Name="LicensePlate" Type="String" Nullable="false" MaxLength="9" FixedLength="true" Unicode="false" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Code" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
-    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="CheckInTime" Type="DateTime" Precision="3" />
-  </EntityType>
 </Schema>

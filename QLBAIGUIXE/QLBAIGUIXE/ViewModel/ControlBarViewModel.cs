@@ -112,7 +112,6 @@ namespace QLBAIGUIXE.ViewModel
                 var w = window as MainWindow;
                 if (w != null)
                 {
-
                     DataProvider.Ins.Acc = -1;
                     DataProvider.Ins.setdata(null, null);
                     var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất không?", "Thông báo",
@@ -122,7 +121,6 @@ namespace QLBAIGUIXE.ViewModel
                         w.Close();
                     }
                     Application.Current.MainWindow = null;
-
                 }
             }
             );
