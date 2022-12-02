@@ -36,7 +36,6 @@ namespace QLBAIGUIXE.ViewModel
                 _SelectedViewParking = value;
                 OnPropertyChanged();
 
-
             }
         }
 
@@ -72,7 +71,8 @@ namespace QLBAIGUIXE.ViewModel
                 if (string.IsNullOrEmpty(DisplayName) || string.IsNullOrEmpty(Phone) || string.IsNullOrEmpty(Code) || string.IsNullOrEmpty(LicensePlate))
                     return false;
 
-
+                if (SelectedInfoParking == null)
+                    return false;
                 var plicense = DataProvider.Ins.DB.INFOCARs.Where(x => x.LicensePlate == LicensePlate && x.CheckOutTime == null).Count();
                 if (plicense > 0)
                     return false;
@@ -81,7 +81,6 @@ namespace QLBAIGUIXE.ViewModel
 
             }, (p) =>
             {
-
                 var custom = new Model.CUSTOMER() { DisplayName = DisplayName, Code = Code, Phone = Phone };
                 DataProvider.Ins.DB.CUSTOMERs.Add(custom);
                 var infocar = new Model.INFOCAR() { LicensePlate = LicensePlate, Type = SelectedInfoParking.Type, IdEMPLOYEE = DataProvider.Ins.Acc, IdCUSTOMER = custom.Id, CheckInTime = DateTime.Now };
@@ -134,7 +133,7 @@ namespace QLBAIGUIXE.ViewModel
 
             int Count(int Type)
             {
-                return DataProvider.Ins.DB.VIEWPARKINGs.Where(x => x.Type == Type ).Count();
+                return DataProvider.Ins.DB.VIEWPARKINGs.Where(x => x.Type == Type).Count();
             }
 
             int Capacity(int Type)
@@ -150,9 +149,9 @@ namespace QLBAIGUIXE.ViewModel
 
             void updatecount()
             {
-                
+
                 Car = "Ô tô: " + Count(1) + "/" + Capacity(1);
-                
+
                 MotoBike = "Xe máy: " + Count(2) + "/" + Capacity(2);
             }
 
