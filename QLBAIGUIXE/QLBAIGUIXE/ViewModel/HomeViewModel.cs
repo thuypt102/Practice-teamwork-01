@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,21 @@ namespace QLBAIGUIXE.ViewModel
 {
     public class HomeViewModel:BaseViewModel
     {
+        private string _LicensePlate { get; set; }
+        public string LicensePlate { get => _LicensePlate; set { _LicensePlate = value; OnPropertyChanged(); } }
+        private string _Code { get; set; }
+        public string Code { get => _Code; set { _Code = value; OnPropertyChanged(); } }
+        private string _DisplayName { get; set; }
+        public string DisplayName { get => _DisplayName; set { _DisplayName = value; OnPropertyChanged(); } }
+        private string _UserName { get; set; }
+        public string UserName { get => _UserName; set { _UserName = value; OnPropertyChanged(); } }
+        private DateTime? _CheckOutTime;
+        public DateTime? CheckOutTime { get => _CheckOutTime; set { _CheckOutTime = value; OnPropertyChanged(); } }
+        private Decimal? _Price;
+        public Decimal? Price
+        {
+            get => _Price; set { _Price = value; OnPropertyChanged(); }
+        }
         private string _Search { get; set; }
         public string Search { get => _Search; set { _Search = value; OnPropertyChanged(); } }
         private ObservableCollection<Model.VIEWHYSTORY> _ViewHystory;
@@ -23,6 +39,16 @@ namespace QLBAIGUIXE.ViewModel
             {
                 _SelectedViewHystory = value;
                 OnPropertyChanged();
+                if (SelectedViewHystory != null)
+                {
+                    LicensePlate = SelectedViewHystory.LicensePlate;
+                    Code = SelectedViewHystory.Code;
+                    DisplayName = SelectedViewHystory.DisplayName;
+                    UserName = SelectedViewHystory.UserName;
+                    CheckOutTime = SelectedViewHystory.CheckOutTime;
+                    Price = SelectedViewHystory.Price;
+
+                }
 
 
             }
@@ -33,6 +59,7 @@ namespace QLBAIGUIXE.ViewModel
         public HomeViewModel()
         {
             ViewHystory = new ObservableCollection<Model.VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
+
             SearchCommand = new RelayCommand<object>((p) =>
             {
                 return true;
@@ -40,7 +67,7 @@ namespace QLBAIGUIXE.ViewModel
             {
 
 
-                ViewHystory = new ObservableCollection<Model.VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies.Where(x => x.Code.Contains(Search)));
+                ViewHystory = new ObservableCollection<Model.VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies.Where(x => x.LicensePlate.Contains(Search)));
 
 
             });

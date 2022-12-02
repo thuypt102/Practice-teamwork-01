@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLBAIGUIXE.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace QLBAIGUIXE.UserControlTeam1
     /// </summary>
     public partial class UserControlHome : UserControl
     {
+        public HomeViewModel ViewModel { get; set; }
         public UserControlHome()
         {
             InitializeComponent();
+            this.DataContext = ViewModel = new HomeViewModel();
         }
     }
 }

@@ -109,31 +109,38 @@ namespace QLBAIGUIXE.ViewModel
                 var value = (object[])p;
                 ListView ListViewMenu = (ListView)value[0];
                 Grid GridMain = (Grid)value[1];
-                UserControl usc = null;
+                userControl = null;
                 GridMain.Children.Clear();
+                string sw ="";
 
-                switch (((ListViewItem)((ListView)ListViewMenu).SelectedItem).Name)
+                if (ListViewMenu.SelectedIndex != -1) 
+                    sw = ((ListViewItem)((ListView)ListViewMenu).SelectedItem).Name;
+                
+                switch (sw)
                 {
                     
                     case "ItemHome":
-                        usc = new UserControlHome();
-                        GridMain.Children.Add(usc);
+                        userControl = new UserControlHome();
+                        GridMain.Children.Add(userControl);
                         break;
                     case "ItemCreate":
-                        usc = new EmployeeUC();
-                        GridMain.Children.Add(usc);
+                        userControl = new EmployeeUC();
+                        GridMain.Children.Add(userControl);
                         break;
                     
                     case "ItemParking":
-                        usc = new ParkingUC();
-                        GridMain.Children.Add(usc);
+                        userControl = new ParkingUC();
+                        GridMain.Children.Add(userControl);
                         break;
                     case "ItemHistory":
-                        usc = new TrackHistoryUC();
-                        GridMain.Children.Add(usc);
+                        userControl = new TrackHistoryUC();
+                        GridMain.Children.Add(userControl);
                         break;
                     
                     default:
+                        userControl = new UserControlHome();
+                        GridMain.Children.Add(userControl);
+                        
                         break;
                 }
             });
