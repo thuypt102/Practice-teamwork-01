@@ -1,16 +1,12 @@
 ﻿using QLBAIGUIXE.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace QLBAIGUIXE.ViewModel
 {
-    public class HomeViewModel:BaseViewModel
+    public class HomeViewModel : BaseViewModel
     {
         private string _LicensePlate { get; set; }
         public string LicensePlate { get => _LicensePlate; set { _LicensePlate = value; OnPropertyChanged(); } }
@@ -22,6 +18,8 @@ namespace QLBAIGUIXE.ViewModel
         public string UserName { get => _UserName; set { _UserName = value; OnPropertyChanged(); } }
         private DateTime? _CheckOutTime;
         public DateTime? CheckOutTime { get => _CheckOutTime; set { _CheckOutTime = value; OnPropertyChanged(); } }
+        private DateTime? _CheckInTime;
+        public DateTime? CheckInTime { get => _CheckInTime; set { _CheckInTime = value; OnPropertyChanged(); } }
         private Decimal? _Price;
         public Decimal? Price
         {

@@ -21,7 +21,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" >
+            <Grid Grid.Row="0" Margin="15">
                 <TextBlock  FontSize="32" HorizontalAlignment="Center"><Bold>Tra cứu</Bold></TextBlock>
             </Grid>
             <Grid Grid.Row="1" >
@@ -52,12 +52,13 @@
                             
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}"></GridViewColumn>
-                                    <GridViewColumn Header="DisplayName" DisplayMemberBinding="{Binding DisplayName}"></GridViewColumn>
-                                    <GridViewColumn Header="LicensePlate" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
-                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                                    <GridViewColumn Header="UserName" DisplayMemberBinding="{Binding UserName}"></GridViewColumn>
-                                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
+                                    <GridViewColumn Header="Ngày gửi xe" DisplayMemberBinding="{Binding CheckInTime}"></GridViewColumn>
+                                    <GridViewColumn Header="Ngày nhận xe" DisplayMemberBinding="{Binding CheckOutTime}"></GridViewColumn>
+                                    <GridViewColumn Header="Khách hàng" DisplayMemberBinding="{Binding DisplayName}"></GridViewColumn>
+                                    <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
+                                    <GridViewColumn Header="Loại xe" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                    <GridViewColumn Header="Nhân viên" DisplayMemberBinding="{Binding UserName}"></GridViewColumn>
+                                    <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
 
                                 </GridView>
                             </ListView.View>

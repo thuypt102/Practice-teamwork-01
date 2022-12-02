@@ -262,5 +262,6 @@
     <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CheckInTime" Type="DateTime" Precision="3" />
   </EntityType>
 </Schema>

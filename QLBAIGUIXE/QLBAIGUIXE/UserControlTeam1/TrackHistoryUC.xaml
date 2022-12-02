@@ -51,7 +51,7 @@
             <Grid Grid.Column="1">
                 <DatePicker Height="25" 
                    HorizontalAlignment="Left"           
-                   DisplayDate="{Binding
+                   SelectedDate="{Binding
                     dateBegin,
                     Mode=TwoWay,
                     TargetNullValue={x:Static System:DateTime.Now}}"
