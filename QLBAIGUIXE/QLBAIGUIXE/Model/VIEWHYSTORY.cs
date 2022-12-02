@@ -21,6 +21,5 @@ namespace QLBAIGUIXE.Model
         public Nullable<decimal> Price { get; set; }
         public string DisplayName { get; set; }
         public string UserName { get; set; }
-        public Nullable<System.DateTime> CheckInTime { get; set; }
     }
 }
