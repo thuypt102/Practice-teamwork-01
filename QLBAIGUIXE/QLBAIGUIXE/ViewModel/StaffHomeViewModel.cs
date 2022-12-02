@@ -134,7 +134,7 @@ namespace QLBAIGUIXE.ViewModel
 
             int Count(int Type)
             {
-                return DataProvider.Ins.DB.INFOCARs.Where(x => x.Type == Type && x.CheckOutTime == null).Count();
+                return DataProvider.Ins.DB.VIEWPARKINGs.Where(x => x.Type == Type ).Count();
             }
 
             int Capacity(int Type)
@@ -150,11 +150,10 @@ namespace QLBAIGUIXE.ViewModel
 
             void updatecount()
             {
-                if (SelectedInfoParking.Type == 1)
-                {
-                    Car = "Ô tô: " + Count(1) + "/" + Capacity(1);
-                }
-                else MotoBike = "Xe máy: " + Count(2) + "/" + Capacity(2);
+                
+                Car = "Ô tô: " + Count(1) + "/" + Capacity(1);
+                
+                MotoBike = "Xe máy: " + Count(2) + "/" + Capacity(2);
             }
 
 

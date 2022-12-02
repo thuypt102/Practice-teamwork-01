@@ -102,9 +102,11 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
     <Key>
       <PropertyRef Name="Code" />
       <PropertyRef Name="LicensePlate" />
+      <PropertyRef Name="Type" />
     </Key>
     <Property Name="Code" Type="char" MaxLength="12" Nullable="false" />
     <Property Name="LicensePlate" Type="char" MaxLength="9" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="fk_bill_employee">
     <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
@@ -240,7 +242,8 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
     <EntitySet Name="VIEWPARKING" EntityType="Self.VIEWPARKING" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [VIEWPARKING].[Code] AS [Code], 
-    [VIEWPARKING].[LicensePlate] AS [LicensePlate]
+    [VIEWPARKING].[LicensePlate] AS [LicensePlate], 
+    [VIEWPARKING].[Type] AS [Type]
     FROM [dbo].[VIEWPARKING] AS [VIEWPARKING]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="fk_bill_employee" Association="Self.fk_bill_employee">

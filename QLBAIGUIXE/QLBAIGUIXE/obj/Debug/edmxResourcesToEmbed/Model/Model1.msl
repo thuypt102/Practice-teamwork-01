@@ -79,6 +79,7 @@
     <EntitySetMapping Name="VIEWPARKINGs">
       <EntityTypeMapping TypeName="QLBAIXEModel.VIEWPARKING">
         <MappingFragment StoreEntitySet="VIEWPARKING">
+          <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Code" ColumnName="Code" />
           <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
         </MappingFragment>

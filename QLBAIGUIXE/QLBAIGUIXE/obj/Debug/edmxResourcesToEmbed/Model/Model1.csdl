@@ -84,9 +84,11 @@
     <Key>
       <PropertyRef Name="Code" />
       <PropertyRef Name="LicensePlate" />
+      <PropertyRef Name="Type" />
     </Key>
     <Property Name="Code" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="LicensePlate" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="fk_bill_employee">
     <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />

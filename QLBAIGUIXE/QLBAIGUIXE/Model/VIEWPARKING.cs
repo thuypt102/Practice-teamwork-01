@@ -16,5 +16,6 @@ namespace QLBAIGUIXE.Model
     {
         public string Code { get; set; }
         public string LicensePlate { get; set; }
+        public int Type { get; set; }
     }
 }
