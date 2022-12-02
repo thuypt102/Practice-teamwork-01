@@ -59,7 +59,6 @@ namespace QLBAIGUIXE.ViewModel
             }
         }
 
-
         public StaffHomeViewModel()
         {
             INFOPARKING = new ObservableCollection<Model.INFOPARKING>(DataProvider.Ins.DB.INFOPARKINGs.Where(x => x.Status == true));
@@ -154,11 +153,6 @@ namespace QLBAIGUIXE.ViewModel
 
                 MotoBike = "Xe máy: " + Count(2) + "/" + Capacity(2);
             }
-
-
-
-
-
         }
 
     }
