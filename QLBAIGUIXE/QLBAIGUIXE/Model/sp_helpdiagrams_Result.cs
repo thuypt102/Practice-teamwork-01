@@ -10,17 +10,13 @@
 namespace QLBAIGUIXE.Model
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class VIEWHYSTORY
+    public partial class sp_helpdiagrams_Result
     {
-        public Nullable<System.DateTime> CheckInTime { get; set; }
-        public Nullable<System.DateTime> CheckOutTime { get; set; }
-        public string LicensePlate { get; set; }
+        public string Database { get; set; }
         public string Name { get; set; }
-        public string Code { get; set; }
-        public Nullable<decimal> Price { get; set; }
-        public string DisplayName { get; set; }
-        public string UserName { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

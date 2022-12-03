@@ -96,6 +96,7 @@
       <PropertyRef Name="Name" />
       <PropertyRef Name="Code" />
     </Key>
+    <Property Name="CheckInTime" Type="DateTime" Precision="3" />
     <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
     <Property Name="LicensePlate" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -186,7 +187,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="QLBAIXEEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="QLBAIXEEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Bills" EntityType="Self.Bill" />
     <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
     <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
@@ -237,11 +238,11 @@
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition">
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QLBAIXEModel.sp_helpdiagramdefinition_Result)">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams">
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QLBAIXEModel.sp_helpdiagrams_Result)">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -252,4 +253,15 @@
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
 </Schema>

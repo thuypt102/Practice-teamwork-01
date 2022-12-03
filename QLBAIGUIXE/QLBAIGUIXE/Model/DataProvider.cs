@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QLBAIGUIXE.Model
+﻿namespace QLBAIGUIXE.Model
 {
-    
+
     public class DataProvider
     {
         public int Acc { get; set; }
@@ -25,11 +19,11 @@ namespace QLBAIGUIXE.Model
                 _ins = value;
             }
         }
-        public QLBAIXEEntities DB { get; set; }
+        public QLBAIXEEntities1 DB { get; set; }
 
         private DataProvider()
         {
-            DB = new QLBAIXEEntities();
+            DB = new QLBAIXEEntities1();
         }
 
         public void setAcc(int acc)
@@ -37,9 +31,9 @@ namespace QLBAIGUIXE.Model
             Acc = acc;
         }
 
-        
+
         public string getLicensePlate { get; set; }
-        
+
         public string getCode { get; set; }
 
         public void setdata(string PL, string code)

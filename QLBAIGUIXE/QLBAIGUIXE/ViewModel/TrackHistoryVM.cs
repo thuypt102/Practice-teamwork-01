@@ -1,8 +1,6 @@
 ﻿using QLBAIGUIXE.Model;
 using System;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Threading;
 using System.Windows.Input;
 
 namespace QLBAIGUIXE.ViewModel
@@ -58,29 +56,14 @@ namespace QLBAIGUIXE.ViewModel
 
         public TrackHistoryVM()
         {
-            CultureInfo culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
-            culture.DateTimeFormat.ShortDatePattern = "dd.MM/yyyy";
-            culture.DateTimeFormat.LongTimePattern = "";
-            Thread.CurrentThread.CurrentCulture = culture;
-
             List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
             DateTime today = DateTime.Now;
+
             dateBegin = today;
             dateEnd = today;
-            today.Hour.CompareTo(0);
-            today.Minute.CompareTo(0);
-            today.Second.CompareTo(0);
 
             DisplayCommand = new RelayCommand<object>((p) =>
             {
-                //string timeStr = CheckOutTime.ToString();
-                string dateB = dateBegin.ToString();
-                string dateE = dateEnd.ToString();
-                if (string.IsNullOrEmpty(dateB) || string.IsNullOrEmpty(dateE))
-                {
-                    return false;
-                }
-
                 if (((TimeSpan)(dateBegin - dateEnd)).Days > 0)
                     return false;
                 else
@@ -88,18 +71,16 @@ namespace QLBAIGUIXE.ViewModel
 
             }, (p) =>
             {
+                DateTime timestart = dateBegin.Date;
+                DateTime timeend = dateEnd.Date;
                 List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
                 var list = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
+
                 foreach (var item in list)
                 {
-                    DateTime dateTime = ((DateTime)item.CheckOutTime);
-                    dateTime.Hour.CompareTo(0);
-                    dateTime.Minute.CompareTo(0);
-                    dateTime.Second.CompareTo(0);
-                    TimeSpan down = dateTime.AddDays(1) - (dateBegin);
-                    TimeSpan up= dateEnd - dateTime;
+                    DateTime dateTime = ((DateTime)item.CheckOutTime).Date;
 
-                    if ((down.Days)<1 || up.Days < 0)
+                    if (DateTime.Compare(dateTime, timestart) < 0 || DateTime.Compare(dateTime, timeend) > 0)
                         List.Remove(item);
                 }
             });
