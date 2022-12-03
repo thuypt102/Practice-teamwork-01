@@ -52,14 +52,13 @@ namespace QLBAIGUIXE.ViewModel
             //thêm
             AddCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(Name))
+                if (string.IsNullOrEmpty(Name) || Count == 0)
                     return false;
 
                 var displayList = DataProvider.Ins.DB.INFOPARKINGs.Where(x => x.Name == Name);
                 if (displayList == null || displayList.Count() != 0)
                     return false;
                 return true;
-
             }, (p) =>
             {
                 var typeList = DataProvider.Ins.DB.INFOPARKINGs.Where(x => x.Type == Type);
