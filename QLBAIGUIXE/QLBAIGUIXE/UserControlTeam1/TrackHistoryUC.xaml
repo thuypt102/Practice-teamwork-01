@@ -138,11 +138,11 @@
                         </GridView>
 
                     </ListView.View>
-
                 </ListView>
             </Border>
         </Grid>
         <Grid Grid.Row="4">
+            <!--
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="7*"/>
                 <ColumnDefinition Width="2*"/>
@@ -158,7 +158,7 @@
                         >
                 </Button>
             </Grid>
-            <!--
+            
             <Grid Grid.Column="2">
                 <Button Command="{Binding CloseCommand}"
                         FontSize="18"
