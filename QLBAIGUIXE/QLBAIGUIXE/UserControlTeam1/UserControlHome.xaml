@@ -54,7 +54,7 @@
                                 <GridView>
                                     <GridViewColumn Header="Ngày gửi xe" DisplayMemberBinding="{Binding CheckInTime}"></GridViewColumn>
                                     <GridViewColumn Header="Ngày nhận xe" DisplayMemberBinding="{Binding CheckOutTime}"></GridViewColumn>
-                                    <GridViewColumn Header="Khách hàng" DisplayMemberBinding="{Binding DisplayName}"></GridViewColumn>
+                                    <GridViewColumn Header="Khách hàng" DisplayMemberBinding="{Binding Code}"></GridViewColumn>
                                     <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding LicensePlate}"></GridViewColumn>
                                     <GridViewColumn Header="Loại xe" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
                                     <GridViewColumn Header="Nhân viên" DisplayMemberBinding="{Binding UserName}"></GridViewColumn>
