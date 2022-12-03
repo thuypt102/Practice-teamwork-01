@@ -104,10 +104,6 @@
     <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-<<<<<<< HEAD
-    <Property Name="CheckInTime" Type="DateTime" Precision="3" />
-=======
->>>>>>> d6f1dca466e1650f49ae26d29f1842fd6330f957
   </EntityType>
   <EntityType Name="VIEWPARKING">
     <Key>

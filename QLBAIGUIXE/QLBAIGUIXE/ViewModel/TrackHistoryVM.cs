@@ -1,8 +1,6 @@
 ﻿using QLBAIGUIXE.Model;
 using System;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Threading;
 using System.Windows.Input;
 
 namespace QLBAIGUIXE.ViewModel
@@ -58,19 +56,11 @@ namespace QLBAIGUIXE.ViewModel
 
         public TrackHistoryVM()
         {
-            CultureInfo culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
-            culture.DateTimeFormat.ShortDatePattern = "dd.MM/yyyy";
-            culture.DateTimeFormat.LongTimePattern = "";
-            Thread.CurrentThread.CurrentCulture = culture;
-
             List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
             DateTime today = DateTime.Now;
 
             dateBegin = today;
             dateEnd = today;
-            today.Hour.CompareTo(0);
-            today.Minute.CompareTo(0);
-            today.Second.CompareTo(0);
 
             DisplayCommand = new RelayCommand<object>((p) =>
             {
@@ -88,11 +78,9 @@ namespace QLBAIGUIXE.ViewModel
 
                 foreach (var item in list)
                 {
-
                     DateTime dateTime = ((DateTime)item.CheckOutTime).Date;
 
                     if (DateTime.Compare(dateTime, timestart) < 0 || DateTime.Compare(dateTime, timeend) > 0)
-
                         List.Remove(item);
                 }
             });
