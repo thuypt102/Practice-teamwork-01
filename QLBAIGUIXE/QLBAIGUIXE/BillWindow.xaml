@@ -27,7 +27,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" >
-            <uc:UserControlUC Tag="{Binding Title, ElementName=BillWindow}" ></uc:UserControlUC>
+            <uc:UserControlUC Tag="{Binding Title, ElementName=billWindow}" ></uc:UserControlUC>
         </Grid>
         <materialDesign:Card Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2, 10">
             <Grid Margin="5,0,5,0">
@@ -71,7 +71,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <TextBlock Text="LicensePlate"/>
+                            <TextBlock Text="Biển số xe"/>
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBlock Text="{Binding LicensePlate}"/>
@@ -83,7 +83,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <TextBlock Text="Code"/>
+                            <TextBlock Text="CCCD/CMND"/>
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBlock Text="{Binding Code}"/>
@@ -95,7 +95,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <TextBlock Text="Type"/>
+                            <TextBlock Text="Loại xe"/>
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBlock Text="{Binding Type}"/>
@@ -112,7 +112,7 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="CheckInTime" Grid.ColumnSpan="2" Margin="0,10,0,0" VerticalAlignment="Top" />
+                            <TextBlock Text="Ngày vào" Grid.ColumnSpan="2" Margin="0,10,0,0" VerticalAlignment="Top" />
                         </Grid>
                         <Grid Grid.Column="1">
                              <TextBlock Text="{Binding Time}"></TextBlock>
@@ -124,7 +124,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <TextBlock Text="Price"/>
+                            <TextBlock Text="Thành tiền"/>
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBlock  Text="{Binding Price}"/>
