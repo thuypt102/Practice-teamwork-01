@@ -71,7 +71,7 @@ namespace QLBAIGUIXE.ViewModel
 
             }, (p) =>
             {
-                DateTime timestart = dateBegin.Date;
+                DateTime timestart = dateBegin.Date;    
                 DateTime timeend = dateEnd.Date;
                 List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);
                 var list = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies);

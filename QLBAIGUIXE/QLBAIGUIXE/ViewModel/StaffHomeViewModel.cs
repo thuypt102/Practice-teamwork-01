@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace QLBAIGUIXE.ViewModel
@@ -67,7 +68,8 @@ namespace QLBAIGUIXE.ViewModel
             MotoBike = "Xe máy: " + Count(2) + "/" + Capacity(2);
             AddCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(DisplayName) || string.IsNullOrEmpty(Phone) || string.IsNullOrEmpty(Code) || string.IsNullOrEmpty(LicensePlate))
+                //if (string.IsNullOrEmpty(DisplayName) || string.IsNullOrEmpty(Phone) || string.IsNullOrEmpty(Code) || string.IsNullOrEmpty(LicensePlate))
+                if (string.IsNullOrEmpty(Code) || string.IsNullOrEmpty(LicensePlate))
                     return false;
 
                 if (SelectedInfoParking == null)
@@ -89,11 +91,13 @@ namespace QLBAIGUIXE.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
                 var vp = new Model.VIEWPARKING() { Code = Code, LicensePlate = LicensePlate };
                 updatecount();
+
                 Code = "";
                 LicensePlate = "";
                 Phone = "";
                 DisplayName = "";
                 ViewParking.Add(vp);
+                MessageBox.Show("Thêm thông tin thành công!", "Thông báo");
             });
 
             ClickCommand = new RelayCommand<object>((p) =>

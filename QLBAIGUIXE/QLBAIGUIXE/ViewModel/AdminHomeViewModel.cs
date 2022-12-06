@@ -65,9 +65,21 @@ namespace QLBAIGUIXE.ViewModel
                 OnPropertyChanged();
             }
         }
+        private userControlStatistical _userControlStatistical { get; set; }
+        public userControlStatistical userControlStatistical
+        {
+            get { return _userControlStatistical; }
+            set
+            {
+                if (value == _userControlStatistical)
+                    return;
+                _userControlStatistical = value;
+                OnPropertyChanged();
+            }
+        }
 
 
-        
+
         public ICommand ButtonOpenMenu_Click { get; set; } 
         public ICommand ButtonCloseMenu_Click { get; set; }
         public ICommand ListViewMenu_SelectionChanged { get; set; }
@@ -136,7 +148,11 @@ namespace QLBAIGUIXE.ViewModel
                         userControl = new TrackHistoryUC();
                         GridMain.Children.Add(userControl);
                         break;
-                    
+                    case "ItemCashMultiple":
+                        userControl = new userControlStatistical();
+                        GridMain.Children.Add(userControl);
+                        break;
+
                     default:
                         userControl = new UserControlHome();
                         GridMain.Children.Add(userControl);

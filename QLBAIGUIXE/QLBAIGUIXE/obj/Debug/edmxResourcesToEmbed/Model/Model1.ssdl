@@ -87,8 +87,8 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWHYSTORY' does not have a primary k
       <PropertyRef Name="LicensePlate" />
       <PropertyRef Name="Name" />
       <PropertyRef Name="Code" />
+      <PropertyRef Name="Type" />
     </Key>
-    <Property Name="CheckInTime" Type="datetime" />
     <Property Name="CheckOutTime" Type="datetime" />
     <Property Name="LicensePlate" Type="char" MaxLength="9" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -96,6 +96,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWHYSTORY' does not have a primary k
     <Property Name="Price" Type="money" />
     <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
     <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Type" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -231,14 +232,14 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
     </EntitySet>
     <EntitySet Name="VIEWHYSTORY" EntityType="Self.VIEWHYSTORY" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
-    [VIEWHYSTORY].[CheckInTime] AS [CheckInTime], 
     [VIEWHYSTORY].[CheckOutTime] AS [CheckOutTime], 
     [VIEWHYSTORY].[LicensePlate] AS [LicensePlate], 
     [VIEWHYSTORY].[Name] AS [Name], 
     [VIEWHYSTORY].[Code] AS [Code], 
     [VIEWHYSTORY].[Price] AS [Price], 
     [VIEWHYSTORY].[DisplayName] AS [DisplayName], 
-    [VIEWHYSTORY].[UserName] AS [UserName]
+    [VIEWHYSTORY].[UserName] AS [UserName], 
+    [VIEWHYSTORY].[Type] AS [Type]
     FROM [dbo].[VIEWHYSTORY] AS [VIEWHYSTORY]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="VIEWPARKING" EntityType="Self.VIEWPARKING" store:Type="Views" store:Schema="dbo">

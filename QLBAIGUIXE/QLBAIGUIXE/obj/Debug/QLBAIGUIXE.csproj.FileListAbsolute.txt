@@ -112,3 +112,15 @@ D:\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\QLBAIGUIXE.csproj.CoreCo
 D:\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\QLBAIGUIXE.csproj.CopyComplete
 D:\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\QLBAIGUIXE.exe
 D:\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\QLBAIGUIXE.pdb
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\userControlStatistical.g.cs
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\LiveCharts.dll
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\LiveCharts.Wpf.dll
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\WPFToolkit.dll
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\LiveCharts.pdb
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\LiveCharts.xml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\LiveCharts.Wpf.pdb
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\bin\Debug\LiveCharts.Wpf.xml
+D:\Github\Practice-teamwork-01\QLBAIGUIXE\QLBAIGUIXE\obj\Debug\UserControlTeam1\userControlStatistical.baml

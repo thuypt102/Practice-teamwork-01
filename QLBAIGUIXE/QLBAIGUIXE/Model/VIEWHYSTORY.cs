@@ -14,7 +14,6 @@ namespace QLBAIGUIXE.Model
     
     public partial class VIEWHYSTORY
     {
-        public Nullable<System.DateTime> CheckInTime { get; set; }
         public Nullable<System.DateTime> CheckOutTime { get; set; }
         public string LicensePlate { get; set; }
         public string Name { get; set; }
@@ -22,5 +21,6 @@ namespace QLBAIGUIXE.Model
         public Nullable<decimal> Price { get; set; }
         public string DisplayName { get; set; }
         public string UserName { get; set; }
+        public int Type { get; set; }
     }
 }

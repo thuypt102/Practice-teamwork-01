@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLBAIXEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLBAIXEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bill">
           <Key>
             <PropertyRef Name="Id" />
@@ -92,8 +92,8 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWHYSTORY' does not have a primary k
             <PropertyRef Name="LicensePlate" />
             <PropertyRef Name="Name" />
             <PropertyRef Name="Code" />
+            <PropertyRef Name="Type" />
           </Key>
-          <Property Name="CheckInTime" Type="datetime" />
           <Property Name="CheckOutTime" Type="datetime" />
           <Property Name="LicensePlate" Type="char" MaxLength="9" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -101,6 +101,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWHYSTORY' does not have a primary k
           <Property Name="Price" Type="money" />
           <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
           <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -236,14 +237,14 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           </EntitySet>
           <EntitySet Name="VIEWHYSTORY" EntityType="Self.VIEWHYSTORY" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [VIEWHYSTORY].[CheckInTime] AS [CheckInTime], 
     [VIEWHYSTORY].[CheckOutTime] AS [CheckOutTime], 
     [VIEWHYSTORY].[LicensePlate] AS [LicensePlate], 
     [VIEWHYSTORY].[Name] AS [Name], 
     [VIEWHYSTORY].[Code] AS [Code], 
     [VIEWHYSTORY].[Price] AS [Price], 
     [VIEWHYSTORY].[DisplayName] AS [DisplayName], 
-    [VIEWHYSTORY].[UserName] AS [UserName]
+    [VIEWHYSTORY].[UserName] AS [UserName], 
+    [VIEWHYSTORY].[Type] AS [Type]
     FROM [dbo].[VIEWHYSTORY] AS [VIEWHYSTORY]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VIEWPARKING" EntityType="Self.VIEWPARKING" store:Type="Views" store:Schema="dbo">
@@ -278,8 +279,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
             <End Role="PARKING" EntitySet="PARKING" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLBAIXEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -378,8 +378,8 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
             <PropertyRef Name="LicensePlate" />
             <PropertyRef Name="Name" />
             <PropertyRef Name="Code" />
+            <PropertyRef Name="Type" />
           </Key>
-          <Property Name="CheckInTime" Type="DateTime" Precision="3" />
           <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
           <Property Name="LicensePlate" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -387,6 +387,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="VIEWPARKING">
           <Key>
@@ -470,7 +471,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QLBAIXEEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QLBAIXEEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bills" EntityType="Self.Bill" />
           <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
           <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
@@ -521,11 +522,11 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QLBAIXEModel.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QLBAIXEModel.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -536,23 +537,12 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QLBAIXEModelStoreContainer" CdmEntityContainer="QLBAIXEEntities1">
+        <EntityContainerMapping StorageEntityContainer="QLBAIXEModelStoreContainer" CdmEntityContainer="QLBAIXEEntities">
           <EntitySetMapping Name="Bills">
             <EntityTypeMapping TypeName="QLBAIXEModel.Bill">
               <MappingFragment StoreEntitySet="Bill">
@@ -642,7 +632,7 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           <EntitySetMapping Name="VIEWHYSTORies">
             <EntityTypeMapping TypeName="QLBAIXEModel.VIEWHYSTORY">
               <MappingFragment StoreEntitySet="VIEWHYSTORY">
-                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
                 <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -665,25 +655,8 @@ warning 6002: The table/view 'QLBAIXE.dbo.VIEWPARKING' does not have a primary k
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QLBAIXEModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QLBAIXEModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QLBAIXEModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QLBAIXEModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLBAIXEModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QLBAIXEModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLBAIXEModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QLBAIXEModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QLBAIXEModel.Store.sp_helpdiagrams" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QLBAIXEModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QLBAIXEModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>

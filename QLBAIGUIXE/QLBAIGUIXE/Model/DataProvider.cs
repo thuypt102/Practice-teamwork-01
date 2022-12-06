@@ -19,11 +19,11 @@
                 _ins = value;
             }
         }
-        public QLBAIXEEntities1 DB { get; set; }
+        public QLBAIXEEntities DB { get; set; }
 
         private DataProvider()
         {
-            DB = new QLBAIXEEntities1();
+            DB = new QLBAIXEEntities();
         }
 
         public void setAcc(int acc)
