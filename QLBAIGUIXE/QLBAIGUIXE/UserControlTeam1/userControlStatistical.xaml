@@ -19,8 +19,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="7*" />
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="50,0,0,0" >
             <ComboBox Margin="0, 5" Width="200" ItemsSource="{Binding FilterList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Bộ loc" Name="Filter" Style="{StaticResource MaterialDesignFloatingHintComboBox}" HorizontalAlignment="Left" >
@@ -37,7 +37,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0"  Margin="30 10">
+            <Grid Grid.Column="0"  Margin="30,0,30,10">
                 <materialDesign:Card  Foreground="{x:Null}">
                     <materialDesign:Card.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -48,7 +48,7 @@
                 </materialDesign:Card>
                 
             </Grid>
-            <Grid Grid.Column="1" Margin="30 10">
+            <Grid Grid.Column="1" Margin="30,0,30,10">
                 <materialDesign:Card  Foreground="{x:Null}">
                     <materialDesign:Card.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -58,8 +58,8 @@
                     </materialDesign:Card.Background>
                 </materialDesign:Card>
             </Grid>
-            <Grid Grid.Column="2"  Margin="30 10">
-                <materialDesign:Card Foreground="{x:Null}">
+            <Grid Grid.Column="2" Margin="30,0,30,10">
+                <materialDesign:Card  Foreground="{x:Null}">
                     <materialDesign:Card.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FF016CFD" Offset="1"/>
@@ -68,6 +68,7 @@
                     </materialDesign:Card.Background>
                 </materialDesign:Card>
             </Grid>
+            
 
         </Grid>
         <Grid Grid.Row="2">
