@@ -105,6 +105,7 @@
     <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="CheckInTime" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="VIEWPARKING">
     <Key>

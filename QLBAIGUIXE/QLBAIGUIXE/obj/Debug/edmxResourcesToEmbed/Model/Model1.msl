@@ -90,6 +90,7 @@
     <EntitySetMapping Name="VIEWHYSTORies">
       <EntityTypeMapping TypeName="QLBAIXEModel.VIEWHYSTORY">
         <MappingFragment StoreEntitySet="VIEWHYSTORY">
+          <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
           <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />

@@ -1,18 +1,12 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Defaults;
+using LiveCharts.Helpers;
+using LiveCharts.Wpf;
 using QLBAIGUIXE.Model;
-using System.Collections.Generic;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using LiveCharts;
-using LiveCharts.Defaults;
-using LiveCharts.Wpf;
-using System.Reflection.Emit;
-using LiveCharts.Helpers;
 
 namespace QLBAIGUIXE.ViewModel
 {
@@ -58,7 +52,7 @@ namespace QLBAIGUIXE.ViewModel
             {
                 _SeriesCollection = value;
                 OnPropertyChanged();
-                
+
             }
         }
         private SeriesCollection _SeriesCollection1 { get; set; }
@@ -75,19 +69,21 @@ namespace QLBAIGUIXE.ViewModel
 
         public ICommand FilterChangeCommand { get; set; }
 
-        public StatisticalViewModel() {
-            List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies.Where(x=>((DateTime)x.CheckOutTime).Month== DateTime.Now.Month ));
+        public StatisticalViewModel()
+        {
+            List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies.Where(x => ((DateTime)x.CheckOutTime).Month == DateTime.Now.Month));
             YFormatter = value => value.ToString();
             Labels = getLabels(List);
             FilterList = new ObservableCollection<Filter>();
-            FilterList.Add(new Filter("Tháng này",1));
-            FilterList.Add(new Filter("Tháng trước ",2));
+            FilterList.Add(new Filter("Tháng này", 1));
+            FilterList.Add(new Filter("Tháng trước ", 2));
             Load();
             Load1();
             FilterChangeCommand = new RelayCommand<object>((p) =>
             {
                 return true;
-            },(p)=>{
+            }, (p) =>
+            {
 
                 if (SelectedFilter.Type == 1)
                 {
@@ -97,17 +93,11 @@ namespace QLBAIGUIXE.ViewModel
                 }
                 else
                 {
-                    List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies.Where(x => ((DateTime)x.CheckOutTime).Month == DateTime.Now.Month-1));
+                    List = new ObservableCollection<VIEWHYSTORY>(DataProvider.Ins.DB.VIEWHYSTORies.Where(x => ((DateTime)x.CheckOutTime).Month == DateTime.Now.Month - 1));
                     Load();
                     Load1();
                 }
-                
-
-
-
             });
-            
-
         }
         //Load () : set vaule cho List của tháng hiện tại
         public void Load()
@@ -126,9 +116,6 @@ namespace QLBAIGUIXE.ViewModel
                     Values = new ChartValues<ObservableValue> { new ObservableValue(getVaule(2)) },
                     DataLabels = true
                 }
-
-
-
             };
         }
         //Load1 () : set vaule cho List của tháng trước
@@ -149,15 +136,12 @@ namespace QLBAIGUIXE.ViewModel
                     Title = "Xe máy",
                     Values = myArray1.AsChartValues()
                 }
-                
-
-
             };
         }
 
         public void getProperties(ObservableCollection<VIEWHYSTORY> List)
         {
-            Amount =List.Count+" Xe";
+            Amount = List.Count + " Xe";
             int n = 0;
             decimal turnover = 0;
             foreach (var item in List)
@@ -171,7 +155,7 @@ namespace QLBAIGUIXE.ViewModel
             {
                 turnover += (decimal)(item.Price);
             }
-            Turnover = (int)turnover  + " VND";
+            Turnover = (int)turnover + " VND";
             Avg = ((int)turnover / n) + " VND";
 
         }//set giá trị của Amount, Turnover, Avg
@@ -187,9 +171,9 @@ namespace QLBAIGUIXE.ViewModel
             else if (n == 30)
                 count = new string[30];
             else count = new string[31];
-            for(int i = 0; i < n; i++)
+            for (int i = 0; i < n; i++)
             {
-                count[i]="Ngày "+(i+1).ToString();
+                count[i] = "Ngày " + (i + 1).ToString();
             }
             return count;
         }//labels điểu đồ đường
@@ -197,10 +181,10 @@ namespace QLBAIGUIXE.ViewModel
         public int getVaule(int Type)
         {
             int count = 0;
-            
-            foreach(var item in List)
+
+            foreach (var item in List)
             {
-                if(item.Type==Type)
+                if (item.Type == Type)
                     count++;
             }
             return count;
@@ -209,23 +193,23 @@ namespace QLBAIGUIXE.ViewModel
         {
             int n = getday(List);
             int[] count;
-            if( n==28)
-                count= new int[28];
-            else if(n== 29)
-                count= new int[29];
-            else if(n==30)
-                count= new int[30];
-            else count= new int[31];
-            
-            
+            if (n == 28)
+                count = new int[28];
+            else if (n == 29)
+                count = new int[29];
+            else if (n == 30)
+                count = new int[30];
+            else count = new int[31];
+
+
             foreach (var item in List)
             {
                 if (item.Type == Type)
-                    count[((DateTime)item.CheckOutTime).Day-1] += (int)item.Price;
-                    
+                    count[((DateTime)item.CheckOutTime).Day - 1] += (int)item.Price;
+
             }
             return count;
-            
+
         }//vaule biểu đồ đường
         //getday(): tính sô ngày trong tháng
         public int getday(ObservableCollection<VIEWHYSTORY> List)
@@ -250,5 +234,5 @@ namespace QLBAIGUIXE.ViewModel
             Type = type;
         }
     }
-    
+
 }

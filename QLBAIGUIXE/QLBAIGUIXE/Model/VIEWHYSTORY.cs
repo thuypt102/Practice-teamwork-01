@@ -22,5 +22,6 @@ namespace QLBAIGUIXE.Model
         public string DisplayName { get; set; }
         public string UserName { get; set; }
         public int Type { get; set; }
+        public Nullable<System.DateTime> CheckInTime { get; set; }
     }
 }

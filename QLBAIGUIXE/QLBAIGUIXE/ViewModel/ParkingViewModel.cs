@@ -62,24 +62,26 @@ namespace QLBAIGUIXE.ViewModel
             }, (p) =>
             {
                 var typeList = DataProvider.Ins.DB.INFOPARKINGs.Where(x => x.Type == Type);
-                while (typeList.Count() != 0)
+                if (typeList.Count() != 0)
                 {
-                    MessageBox.Show("Trùng mã bãi, vui lòng nhập mã khác!");
+                    MessageBox.Show("Trùng mã bãi, vui lòng nhập mã khác!", "Thông báo");
                 }
-
-                var INFOPARKING = new INFOPARKING()
+                else
                 {
-                    Type = Type,
-                    Name = Name,
-                    Count = Count
-                };
+                    var INFOPARKING = new INFOPARKING()
+                    {
+                        Type = Type,
+                        Name = Name,
+                        Count = Count,
+                        Status = true
+                    };
 
-                DataProvider.Ins.DB.INFOPARKINGs.Add(INFOPARKING);
-                DataProvider.Ins.DB.SaveChanges();
+                    DataProvider.Ins.DB.INFOPARKINGs.Add(INFOPARKING);
+                    DataProvider.Ins.DB.SaveChanges();
 
-                List.Add(INFOPARKING);
-                MessageBox.Show("Thêm bãi gửi thành công!", "Thông báo");
-
+                    List.Add(INFOPARKING);
+                    MessageBox.Show("Thêm bãi gửi thành công!", "Thông báo");
+                }
             });
             //sửa
             EditCommand = new RelayCommand<object>((p) =>
@@ -134,13 +136,10 @@ namespace QLBAIGUIXE.ViewModel
                     {
                         List.Remove(INFOPARKING);
                     }
-                    else
-                    {
-                        SelectedItem.Name = Name;
-                        SelectedItem.Count = Count;
-                    }
-
                     MessageBox.Show("Xóa bãi gửi này thành công!", "Thông báo");
+                    Type = 0;
+                    Name = "";
+                    Count = 0;
                 }
 
             });
