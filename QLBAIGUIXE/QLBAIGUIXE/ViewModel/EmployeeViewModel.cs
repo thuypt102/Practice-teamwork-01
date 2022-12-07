@@ -70,7 +70,8 @@ namespace QLBAIGUIXE.ViewModel
                     UserName = UserName,
                     Password = passEncode,
                     DisplayName = DisplayName,
-                    IdRole = IdRole
+                    IdRole = IdRole,
+                    Status = true
                 };
 
                 DataProvider.Ins.DB.EMPLOYEEs.Add(EMPLOYEE);
