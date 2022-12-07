@@ -109,6 +109,7 @@ namespace QLBAIGUIXE.ViewModel
             
 
         }
+        //Load () : set vaule cho List của tháng hiện tại
         public void Load()
         {
             getProperties(List);
@@ -130,6 +131,7 @@ namespace QLBAIGUIXE.ViewModel
 
             };
         }
+        //Load1 () : set vaule cho List của tháng trước
         public void Load1()
         {
             getProperties(List);
@@ -172,7 +174,8 @@ namespace QLBAIGUIXE.ViewModel
             Turnover = (int)turnover  + " VND";
             Avg = ((int)turnover / n) + " VND";
 
-        }
+        }//set giá trị của Amount, Turnover, Avg
+
         public string[] getLabels(ObservableCollection<VIEWHYSTORY> List)
         {
             int n = getday(List);
@@ -189,7 +192,8 @@ namespace QLBAIGUIXE.ViewModel
                 count[i]="Ngày "+(i+1).ToString();
             }
             return count;
-        }
+        }//labels điểu đồ đường
+
         public int getVaule(int Type)
         {
             int count = 0;
@@ -200,7 +204,7 @@ namespace QLBAIGUIXE.ViewModel
                     count++;
             }
             return count;
-        }
+        }//vaule biểu đồ tròn
         public int[] getVaule1(int Type, ObservableCollection<VIEWHYSTORY> List)
         {
             int n = getday(List);
@@ -222,7 +226,8 @@ namespace QLBAIGUIXE.ViewModel
             }
             return count;
             
-        }
+        }//vaule biểu đồ đường
+        //getday(): tính sô ngày trong tháng
         public int getday(ObservableCollection<VIEWHYSTORY> List)
         {
             int n = 0;
