@@ -74,7 +74,7 @@
                         <ComboBox Margin="5 5 15 5" DisplayMemberPath="Name" ItemsSource="{Binding INFOPARKING}" SelectedItem="{Binding SelectedInfoParking, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  materialDesign:HintAssist.Hint="Loại xe" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
                     </Grid>
                     <Grid Margin="10" Grid.Row="1">
-                        <materialDesign:Card Margin="10 40" Background="WhiteSmoke"  >
+                        <materialDesign:Card Margin="10 60" Background="Transparent"  >
                             <Button
 								Command="{Binding AddCommand}"
 								Style="{StaticResource MaterialDesignRaisedLightButton}"
@@ -115,13 +115,22 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <TextBlock Margin="15,0,5,0" Text="{Binding MotoBike}" VerticalAlignment="Bottom"/>
-                        </Grid>
-                        <Grid Grid.Column="1">
-                            
-                            <TextBlock Margin="15,0,5,0" Text="{Binding Car}" VerticalAlignment="Bottom"/>
-                        </Grid>
+                        <materialDesign:Card Grid.Column="0" Margin="10,20,30,10">
+                            <Grid>
+                                <StackPanel Margin="10,40,10,10">
+                                    <TextBlock Text="Ô tô" FontSize="12" Margin="10,0,0,10" HorizontalAlignment="Left" />
+                                    <TextBlock FontSize="30" FontFamily="Italic" Width="129" Text="{Binding Car}" Margin="10,0,0,10" HorizontalAlignment="Left" />
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Card >
+                        <materialDesign:Card Grid.Column="1" Margin="30,20,10,10">
+                            <Grid>
+                                <StackPanel Margin="10,40,10,10">
+                                    <TextBlock Text="Xe Máy" FontSize="12" Margin="10,0,0,10" HorizontalAlignment="Left" />
+                                    <TextBlock FontSize="30" FontFamily="Italic" Width="129"  Text="{Binding MotoBike}"  Margin="10,0,0,10" HorizontalAlignment="Left" />
+                                </StackPanel> 
+                            </Grid>
+                        </materialDesign:Card>
                     </Grid>
 
                     

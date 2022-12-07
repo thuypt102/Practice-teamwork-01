@@ -24,6 +24,12 @@ namespace QLBAIGUIXE.ViewModel
         public Func<double, string> YFormatter { get => _YFormatter; set { _YFormatter = value; OnPropertyChanged(); } }
         public int CountCar { get; set; }
         public int CountBike { get; set; }
+        private string _Turnover { get; set; }
+        public string Turnover { get => _Turnover; set { _Turnover = value; OnPropertyChanged(); } }
+        private string _Amount { get; set; }
+        public string Amount { get => _Amount; set { _Amount = value; OnPropertyChanged(); } }
+        private string _Avg { get; set; }
+        public string Avg { get => _Avg; set { _Avg = value; OnPropertyChanged(); } }
 
         private ObservableCollection<Filter> _FilterList;
         public ObservableCollection<Filter> FilterList { get => _FilterList; set { _FilterList = value; OnPropertyChanged(); } }
@@ -105,6 +111,7 @@ namespace QLBAIGUIXE.ViewModel
         }
         public void Load()
         {
+            getProperties(List);
             SeriesCollection = new SeriesCollection{
                 new PieSeries
                 {
@@ -120,10 +127,12 @@ namespace QLBAIGUIXE.ViewModel
                 }
 
 
+
             };
         }
         public void Load1()
         {
+            getProperties(List);
             var myArray = getVaule1(1, List);
             var myArray1 = getVaule1(2, List);
             SeriesCollection1 = new SeriesCollection{
@@ -142,6 +151,27 @@ namespace QLBAIGUIXE.ViewModel
 
 
             };
+        }
+
+        public void getProperties(ObservableCollection<VIEWHYSTORY> List)
+        {
+            Amount =List.Count+" Xe";
+            int n = 0;
+            decimal turnover = 0;
+            foreach (var item in List)
+            {
+                if (((DateTime)item.CheckOutTime).Month == DateTime.Now.Month)
+                    n = DateTime.Now.Day;
+                else n = getday(List);
+                break;
+            }
+            foreach (var item in List)
+            {
+                turnover += (decimal)(item.Price);
+            }
+            Turnover = (int)turnover  + " VND";
+            Avg = ((int)turnover / n) + " VND";
+
         }
         public string[] getLabels(ObservableCollection<VIEWHYSTORY> List)
         {

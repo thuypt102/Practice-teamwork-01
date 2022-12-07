@@ -64,8 +64,8 @@ namespace QLBAIGUIXE.ViewModel
         {
             INFOPARKING = new ObservableCollection<Model.INFOPARKING>(DataProvider.Ins.DB.INFOPARKINGs.Where(x => x.Status == true));
             ViewParking = new ObservableCollection<Model.VIEWPARKING>(DataProvider.Ins.DB.VIEWPARKINGs);
-            Car = "Ô tô: " + Count(1) + "/" + Capacity(1);
-            MotoBike = "Xe máy: " + Count(2) + "/" + Capacity(2);
+            Car = Count(1) + "/" + Capacity(1);
+            MotoBike =Count(2) + "/" + Capacity(2);
             AddCommand = new RelayCommand<object>((p) =>
             {
                 //if (string.IsNullOrEmpty(DisplayName) || string.IsNullOrEmpty(Phone) || string.IsNullOrEmpty(Code) || string.IsNullOrEmpty(LicensePlate))
@@ -153,9 +153,9 @@ namespace QLBAIGUIXE.ViewModel
             void updatecount()
             {
 
-                Car = "Ô tô: " + Count(1) + "/" + Capacity(1);
+                Car = Count(1) + "/" + Capacity(1);
 
-                MotoBike = "Xe máy: " + Count(2) + "/" + Capacity(2);
+                MotoBike = Count(2) + "/" + Capacity(2);
             }
         }
 

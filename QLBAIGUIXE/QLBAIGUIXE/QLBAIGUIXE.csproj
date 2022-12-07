@@ -322,6 +322,9 @@
     <Resource Include="Asset\acc.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Asset\money.png" />
+    <Resource Include="Asset\dollar.png" />
+    <Resource Include="Asset\car.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
