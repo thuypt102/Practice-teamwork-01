@@ -50,9 +50,6 @@ namespace QLBAIGUIXE.ViewModel
                 {
                     IsAccount = Visibility.Hidden;
                 }
-
-
-
             });
 
             CloseWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) =>

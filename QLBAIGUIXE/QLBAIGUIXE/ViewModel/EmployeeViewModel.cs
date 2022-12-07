@@ -58,7 +58,7 @@ namespace QLBAIGUIXE.ViewModel
                     return false;
 
                 var displayList = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.DisplayName == DisplayName);
-                if (displayList == null || displayList.Count() != 0)
+                if (displayList == null || IdRole == null || displayList.Count() != 0)
                     return false;
                 return true;
 
